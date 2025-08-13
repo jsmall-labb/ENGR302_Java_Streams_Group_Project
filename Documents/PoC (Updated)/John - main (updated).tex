@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, total={6in, 8in}]{geometry} 
+\usepackage{tabularx}
+\usepackage{booktabs}
+\renewcommand{\arraystretch}{1.3}
+
+
+\title{The Streams Game (Not Final) - Proof of Concept}
+\author{ 
+    \textbf{3 Dollar Chicken Tenders}
+    \\
+    David Nangoi: nangoidavi (300604132) \\ 
+    Ran Ju: juran (300653980) \\ 
+    Armin Ruckstuhl: ruckstarmi (300650792) \\ 
+    James Small: smalljame (300652665) \\ 
+    John Reeve: reevejohn (300652183) \\ 
+    Ziggy Redding: reddinzigg (300656072) 
+} 
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Background}
+The purpose of the game is to teach the concept of Java Streams through a series of puzzle-based “Tasks” that reinforce understanding and educate players on the topic. At Te Herenga Waka – Victoria University of Wellington, Java Streams are introduced in the second year of the Computer Science and Engineering bachelor’s degrees in the SWEN221 course. For this reason, the game is targeted at second year and advanced first-year students who are new to the concept. 
+\newline\newline
+Java Streams can be abstract and difficult to grasp through traditional teaching methods alone. Our game aims to act as a bridge of understanding by introducing core ideas, such as filtering, mapping, and reducing via interactive game play. The goal is to help players build intuitive, transferable mental models that can be applied to real-world programming tasks. 
+\newline\newline
+The motivation for this proof-of-concept came from our own struggles with Java Streams during our second year. Recognizing that many of our peers shared similar challenges, we decided to design an interactive game that supports students in understanding this foundational programming concept. 
+
+\section{Stakeholders}
+
+\subsection*{Development Team – 3 Dollar Chicken Tenders}
+Our ENGR301/302 project group is responsible for the planning and development of the game. Our primary motivation is to achieve a high academic result, though we are also invested in creating a useful and engaging educational tool.
+
+\subsection*{Client}
+Nathan Chamberlain acted as our client during ENGR301 and supported us through the requirements gathering phase. Although his involvement has not continued into ENGR302, in a traditional project, the client would remain active throughout the development phase.
+
+\subsection*{Lecturers and Staff}
+The ENGR301/302 teaching staff guide us throughout the project lifecycle, with a strong focus on project management practices and limited assistance on the technical side. Additionally, lecturers of the courses involving Java Streams will eventually implement our game in their teaching, making them key stakeholders who require a useful learning tool for their students.
+
+\subsection*{Users}
+Our primary targeted users are second-year Software Engineering and Computer Science students, who will use this game to learn Java Streams. Advanced first-year students represent a secondary user group, as they may also benefit from early exposure to these concepts.
+
+\subsection*{University / ECS}
+The School of Engineering and Computer Science (ECS) will serve as the primary distributor of the final game. They may also be responsible for the product’s long-term maintenance and updates.
+
+\subsection*{External Vendors}
+Although unlikely, it is possible that other universities or institutions could adopt the game as an educational tool. These potential stakeholders would be interested in both its pedagogical value and its appeal as a gamified learning experience.
+
+\section{Measures of Success}
+
+\subsection*{Objective 1: Proof of Concept}
+We will create a Proof of Concept for our game by the end of the trimester. This product will include:
+\begin{itemize}
+    \item Menu systems for starting games and changing settings
+    \item A full game map to explore
+    \item At least two sets of questions (easy and hard)
+    \item An intro and conclusion cinematic
+    \item Scoreboards for personal best times with any team, and team times
+    \item The game should be capable of  teaching the basic concepts of Java Streams to a 200-level VUW ECS student by itself
+\end{itemize}
+
+\subsection*{Objective 2: Cybersecurity Features}
+Our game will implement some cybersecurity features. At a minimum, this includes basic measures such as encrypted data while playing and password protection for games. More advanced features will be added if time allows. These protections aim to prevent data tampering or unauthorized modification of the game.
+
+\subsection*{Objective 3: Testing Before Final Presentation}
+We will conduct testing before the final presentation. This includes testing:
+\begin{itemize}
+    \item Questions – difficulty, presentation, and time to complete
+    \item Gameplay loop – whether it is engaging
+    \item Visual design – whether it is pleasant and clear
+    \item Menus – whether they are well-designed, clear, effective, and communicative
+    \item General functionality – bug testing
+\end{itemize}
+Further user testing requires approval from the ethics board so is likely out of scope of this project. 
+
+\subsection*{Objective 4: Ease of Setup}
+Our game will be easy to set up for new players in a lecture or lab setting:
+\begin{itemize}
+    \item A new user, with no prior experience, should be able to start a game with their group within five minutes.
+    \item Experienced users should be able to start a game within two minutes.
+\end{itemize}
+
+\subsection*{Objective 5: Performance Benchmarks}
+Our game will meet the performance benchmarks defined in ENGR301 across lab machines and a variety of student laptops (with differing specs and operating systems):
+\begin{itemize}
+    \item Stable 1080p, 60FPS performance on lab machines with similar performance on personal laptops for synchronization.
+\end{itemize}
+
+\subsection*{Objective 6: Fun Factor}
+\textit{“If it’s not fun, why bother?”} – Reggie Fils-Aimé.
+
+Our game must be fun. If students don’t enjoy it, they won’t engage with it, and it won’t be an effective learning tool. Since learning is not inherently enjoyable for many students, the gameplay experience must compensate for that.
+
+We will assess how enjoyable our game is through player feedback, either gathered through the in-game survey or through post-play interviews.
+
+\section{Scope}
+\subsection*{In Scope}
+
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Feature} & \textbf{Description} \\
+\hline
+Basic task interface & The player can complete incomplete lines of code by selecting the correct option from a set of answers.\\
+\hline
+Stat tracking & The ability to measure player accuracy and completion time to evaluate learning outcomes. \\
+\hline
+LAN multiplayer & Players can work together to complete a set of tasks to finish the game. \\
+\hline
+Difficulty setting & Changing this setting increases the number of hard questions included. \\
+\hline
+End of game feedback & To collect user experience data and determine whether learning objectives were met. \\
+\hline
+3D world & A 3D environment built using the Unity engine. \\
+\hline
+Menu system & Allows users to host games, join games, start games, quit, and view performance. \\
+\hline
+Tutorial & Guides the player through how the game is played. \\
+\hline
+Limited pool of questions & As this is only a proof of concept, we will not create a large variety of questions, as replayability is not a key requirement. \\
+\hline
+\end{tabularx}
+
+
+\subsection*{Out of Scope}
+
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Feature} & \textbf{Description} \\
+\hline
+Polished assets & Assets in the game will be placeholders used primarily for testing functionality. \\
+\hline
+Question random generator & Advanced dynamic question generation will not be included. \\
+\hline
+Cloud/server support & Only local co-op is supported. No cloud saves or global leaderboard functionality; all data is stored locally. \\
+\hline
+Player code writing & Players will not be able to directly write code into missing code blocks. \\
+\hline
+Sound design & No sound effects are planned to be added at this stage. \\
+\hline
+Mobile version & The mobile platform is not included. \\
+\hline
+Accessibility features & Features such as narration and colorblind modes are not considered at this stage. \\
+\hline
+\end{tabularx}
+
+\section{Approach Taken}
+
+To execute this proof of concept (POC), our team will take a structured and time-conscious approach based on the work completed in ENGR301. We are targeting the completion of the POC by 10 October 2025, with the aim to have core features implemented one week prior to this deadline. This timeline will be refined and managed via our Gantt chart, with buffers built in to accommodate unforeseen issues and to allow for testing, feedback, and necessary revisions.
+\newline\newline
+The goal of the POC is to validate both the technical feasibility and educational effectiveness of our game. Specifically, we aim to implement the core gameplay loop, where players complete code snippets by selecting correct answers, in a 3D Unity-based environment. The game will include basic movement, a tutorial, LAN multiplayer functionality, a simple menu system, and a limited pool of easy and hard questions. Basic networking will be achieved using Unity  Netcode for GameObjects to setup multiplayer lobbies over LAN. 
+\newline\newline
+The product is being developed as a local co-op game, with all data stored locally. Initially, the software will be built and tested on Windows, but Unity’s support for multi-platform deployment will allow us to run this game on different OSs to fit our requirements.
+\newline\newline
+We will assign specific responsibilities to each team member to ensure workload distribution, and incorporate regular peer reviews and revision phases to uphold quality and maintain a steady momentum of progress. All work will be reviewed in accordance with the timelines specified in our Gantt chart.
+\newline\newline
+Testing will be conducted internally and potentially with a small, selected group of external users. Feedback may be collected through in-game surveys if ethics approval is granted. The number of external users will be limited to a manageable group to ensure feedback can be properly processed. The expected performance benchmark is 1080p at 60 FPS on lab machines and personal laptops.
+\newline\newline
+Collaboration will be maintained through scheduled weekly meetings, with additional meetings arranged as needed. In the event of disagreements or divergent ideas, we will resolve issues through consensus and refer to project priorities defined in our scope. Emergent technical challenges and research requirements will be addressed as they arise, with time allocated for investigation and resolution. If disagreement lasts for an extended period of time, we will ask for mediation from our tutor.
+\newline\newline
+Due to the limited timeframe and our commitments to other courses, this project will only aim to deliver the POC during the current trimester. The exit path at the conclusion of this POC will be to present the final product for evaluation and review. After this, we will determine whether further development is feasible or if the POC will be archived. No long-term support or continuation is guaranteed, although documentation will be left to support any future work based on the outcomes of this project.
+
+\end{document}
