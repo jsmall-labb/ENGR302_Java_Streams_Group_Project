@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class quitButton : MonoBehaviour
+public class QuitButton : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,7 +14,7 @@ public class quitButton : MonoBehaviour
         
     }
 
-    void doQuitAction(){
+    public void doQuitAction(){
         Application.Quit();
         Debug.Log("Game is exiting");
     }
