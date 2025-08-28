@@ -17,6 +17,6 @@ public class StartGame : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("MapScene");
+        SceneManager.LoadScene("Ran_test_scene");
     }
 }
