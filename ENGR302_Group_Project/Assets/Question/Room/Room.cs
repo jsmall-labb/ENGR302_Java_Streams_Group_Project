@@ -18,7 +18,7 @@ public class Room
     {
         for (int i = 0; i < _numTasks; i++)
         {
-            Question q = new Question(_questionPool);
+            Question q = _questionPool.GetRandomQuestion();
             _questions.Add(q);
         }
        

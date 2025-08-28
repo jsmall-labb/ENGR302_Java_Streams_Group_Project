@@ -16,4 +16,9 @@ public class QuestionPool
     {
         
     }
+
+    public Question GetRandomQuestion()
+    {
+        
+    }
 }
