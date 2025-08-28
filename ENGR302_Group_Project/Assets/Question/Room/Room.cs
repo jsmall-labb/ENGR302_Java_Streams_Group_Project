@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 public class Room
 {
@@ -33,6 +34,11 @@ public class Room
         {
             _questionAnswers.Add(q.getId(), q.GetAnswer());
         }
+    }
+
+    public  Dictionary<int,string>.ValueCollection GetAllQuestionAnswers()
+    {
+        return _questionAnswers.Values;
     }
 
     public Question GetQuestion(int id)
