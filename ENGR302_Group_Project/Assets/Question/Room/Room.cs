@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using DefaultNamespace;
-
 
 public class Room
 {
     private int _numTasks;
     private QuestionPool _questionPool;
-    private List<Question> _questions;
+    private Dictionary<int,Question> _questions;
     
     public Room(int numtasks, QuestionPool questionPool)
     {
@@ -19,15 +17,14 @@ public class Room
         for (int i = 0; i < _numTasks; i++)
         {
             Question q = _questionPool.GetRandomQuestion();
-            _questions.Add(q);
+            _questions.Add(q.getId(), q);
         }
        
     }
 
-    public Question GetQuestion(int index)
+    public Question GetQuestion(int id)
     {
-        return _questions[index];
+        return _questions[id];
     }
-
-
+    
 }
