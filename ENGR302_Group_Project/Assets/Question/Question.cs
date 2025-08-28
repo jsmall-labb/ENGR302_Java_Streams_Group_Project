@@ -1,15 +1,15 @@
 ﻿using System;
-using DefaultNamespace;
+
 
 
 public class Question
 {
-
+private int _id;
  private String _room;
  private String _context;
  private String _answer;
  private String _completion;
- public Question(String  room, String context, String answer, String completion)
+ public Question(int id, String  room, String context, String answer, String completion)
  {
  _room = room;
  _context = context;
@@ -17,6 +17,10 @@ public class Question
  _completion = completion;
  }
 
+ public int getId()
+ {
+  return _id;
+ }
  public String GetRoom()
  {
   return _room;
