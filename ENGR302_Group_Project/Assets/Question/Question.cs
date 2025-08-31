@@ -10,6 +10,7 @@ private int _id;
  private String _context;
  private String _answer;
  private String _completion;
+ private bool _isAnswered;
  
  
  /// <summary>
@@ -78,8 +79,20 @@ private int _id;
  /// </summary>
  /// <param name="input">The input to check against the correct answer</param>
  /// <returns>True if the input matches the correct answer, false otherwise</returns>
- public bool IsCompleted(String input)
+ public bool IsCorrect(String input)
  {
-  return input == _answer;
+  if (input == _answer)
+  {
+   _isAnswered = true;
+   return true;
+  }
+  return false;
  }
+
+ public bool IsAnswered()
+ {
+  return _isAnswered;
+ }
+
+
 }
