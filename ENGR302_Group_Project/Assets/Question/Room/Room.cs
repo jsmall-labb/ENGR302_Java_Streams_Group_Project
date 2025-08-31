@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 public class Room
 {
     private int _numTasks;
-    private QuestionPool _questionPool;
+    private static QuestionPool _questionPool;
     private Dictionary<int,Question> _questions;
     private Dictionary<int, String> _questionAnswers;
     private String _name;
@@ -85,5 +85,6 @@ public class Room
     {
         return _name;
     }
+    
     
 }
