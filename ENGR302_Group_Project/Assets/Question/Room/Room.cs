@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using JetBrains.Annotations;
 
 
 [ System.Serializable]
@@ -86,5 +87,18 @@ public class Room
         return _name;
     }
     
+    
+    public bool AllQuestionsAnswered()
+    {
+        
+        foreach (Question q in _questions.Values)
+        {
+            if (!q.IsAnswered())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     
 }
