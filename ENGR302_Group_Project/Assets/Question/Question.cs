@@ -88,7 +88,11 @@ private int _id;
   }
   return false;
  }
-
+ 
+ /// <summary>
+ /// Returns if the Question has already been answered.
+ /// </summary>
+ /// <returns>True if the question has already been answered, false otherwise</returns>
  public bool IsAnswered()
  {
   return _isAnswered;
