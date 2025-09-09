@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0.9411765, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -764,7 +764,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: main_menu
-  resetProgressOnLoad: 0
 --- !u!1 &915411259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +1128,6 @@ GameObject:
   - component: {fileID: 1085851767}
   - component: {fileID: 1085851766}
   - component: {fileID: 1085851765}
-  - component: {fileID: 1085851768}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -1179,7 +1177,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0.938499, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.3679244, b: 0.80583245, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1200,19 +1198,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1085851766}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1085851768}
-        m_TargetAssemblyTypeName: ToMainMenu, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: GameScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1085851766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,20 +1237,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085851763}
   m_CullTransparentMesh: 1
---- !u!114 &1085851768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085851763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87909ee3920d11343a763f8bddf6dc8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: GameScene
-  resetProgressOnLoad: 0
 --- !u!1 &1127112277
 GameObject:
   m_ObjectHideFlags: 0
