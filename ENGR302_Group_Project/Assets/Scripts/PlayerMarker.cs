@@ -10,7 +10,7 @@ public class MinimapFollow : MonoBehaviour
         if (target != null)
         {
             // follow X/Z (room position), keep fixed height
-            transform.position = new Vector3(target.position.x, height, target.position.z);
+            transform.position = new Vector3(target.position.x + 9f, height, target.position.z);
         }
     }
 }
