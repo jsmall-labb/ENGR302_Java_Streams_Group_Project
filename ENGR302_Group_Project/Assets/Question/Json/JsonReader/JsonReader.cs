@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // class QuestionList
@@ -39,14 +40,14 @@ public class JsonReader
 
         foreach (JSONQuestion jq in jsonLoadedQuestions.questions)
         {
-            // Temporary solution until a different method is chosen.
-            string answerText = "";
-            foreach (string s in jq.answer)
+
+            List<string> answers = new();
+            foreach (string answer in jq.answer)
             {
-                answerText += s;
+                answers.Add(answer);
             }
 
-            returnQuestions.Add(new Question(currentID, jq.room, jq.text, answerText, jq.completed_text));
+            returnQuestions.Add(new Question(currentID, jq.room, jq.text, answers, jq.completed_text));
             currentID++;
         }
 

@@ -2,13 +2,13 @@
     "questions" :[
         {
             "room": "Cockpit",
-            "text": "// RUNNING COCKPIT DIAGNOSTICS… LOADING… \\ \n// ERROR :: SHIPLOG CORRUPTED. EVENT TIMELINE DISORDERED. :: \\ \n\nSHIPLOG = SHIPLOG.stream().___; ",
+            "text": "// RUNNING COCKPIT DIAGNOSTICS… LOADING… \\ \n// ERROR :: SHIPLOG CORRUPTED. EVENT TIMELINE DISORDERED. :: \\ \n\nSHIPLOG = SHIPLOG.stream().___(); ",
             "answer": ["sorted()"],
             "completed_text": "// RUNNING COCKPIT DIAGNOSTICS… LOADING… \\ \n// ERROR :: SHIPLOG CORRUPTED. EVENT TIMELINE DISORDERED. :: \\ \n\nSHIPLOG = SHIPLOG.stream().sorted();"
         },
         {
             "room": "Sensors",
-            "text": "// RUNNING SENSOR DIAGNOSTICS… LOADING… \\ \n// SENSORS DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// LOADING SENSOR DATA… \\ \n// ERROR :: DATA SORTING FAILED. REPEATED ELEMENTS PRESENT. :: \\ \n\nList<Object> allScanned = SENSORS.data.stream().___.___; ",
+            "text": "// RUNNING SENSOR DIAGNOSTICS… LOADING… \\ \n// SENSORS DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// LOADING SENSOR DATA… \\ \n// ERROR :: DATA SORTING FAILED. REPEATED ELEMENTS PRESENT. :: \\ \n\nList<Object> allScanned = SENSORS.data.stream().___().___(); ",
             "answer": ["distinct()", "toList()"],
             "completed_text": "// RUNNING SENSOR DIAGNOSTICS… LOADING… \\ \n// SENSORS DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// LOADING SENSOR DATA… \\ \n// ERROR :: DATA SORTING FAILED. REPEATED ELEMENTS PRESENT. :: \\ \n\nList<Object> allScanned = SENSORS.data.stream().distinct().toList();"
         },
@@ -20,7 +20,7 @@
         },
         {
             "room": "Escape pod 1",
-            "text": "// RUNNING ESCAPE POD 1 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 1 DIAGNOSTICS COMPLETE :: NO RESPONSE :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: LOG ESCAPE POD 1 AS MISSING :: \\ \n\nSHIP.manifest.escapePods.eP1 = Stream.___; ",
+            "text": "// RUNNING ESCAPE POD 1 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 1 DIAGNOSTICS COMPLETE :: NO RESPONSE :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: LOG ESCAPE POD 1 AS MISSING :: \\ \n\nSHIP.manifest.escapePods.eP1 = Stream.___(); ",
             "answer": ["empty()"],
             "completed_text": "// RUNNING ESCAPE POD 1 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 1 DIAGNOSTICS COMPLETE :: NO RESPONSE :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: LOG ESCAPE POD 1 AS MISSING :: \\ \n\nSHIP.manifest.escapePods.eP1 = Stream.empty();"
         },
@@ -38,15 +38,15 @@
         },
         {
             "room": "Shield Generator",
-            "text": "// RUNNING SHIELD GENERATOR DIAGNOSTICS… LOADING… \\ \n// SHIELD GENERATOR DIAGNOSTICS COMPLETE :: OFFLINE. ENERGY SURGE. :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: STOP FLOW OF EXCESS POWER IMMEDIATELY TO PREVENT DAMAGE AND CATASTROPHIC FAILURE. RETAIN MAXIMUM POWER TO PROTECT SHIP AND NOT DAMAGE SYSTEM. :: \\ \n\nSHIP.SHIELDGENERATOR.powerFlow.stream().___(SHIP.SHIELDGENERATOR.powerLevels.stream().___); ",
+            "text": "// RUNNING SHIELD GENERATOR DIAGNOSTICS… LOADING… \\ \n// SHIELD GENERATOR DIAGNOSTICS COMPLETE :: OFFLINE. ENERGY SURGE. :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: STOP FLOW OF EXCESS POWER IMMEDIATELY TO PREVENT DAMAGE AND CATASTROPHIC FAILURE. RETAIN MAXIMUM POWER TO PROTECT SHIP AND NOT DAMAGE SYSTEM. :: \\ \n\nSHIP.SHIELDGENERATOR.powerFlow.stream().___(SHIP.SHIELDGENERATOR.powerLevels.stream().___()); ",
             "answer": ["limit()", "max()"],
             "completed_text": "// RUNNING SHIELD GENERATOR DIAGNOSTICS… LOADING… \\ \n// SHIELD GENERATOR DIAGNOSTICS COMPLETE :: OFFLINE. ENERGY SURGE. :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: STOP FLOW OF EXCESS POWER IMMEDIATELY TO PREVENT DAMAGE AND CATASTROPHIC FAILURE. RETAIN MAXIMUM POWER TO PROTECT SHIP AND NOT DAMAGE SYSTEM. :: \\ \n\nSHIP.SHIELDGENERATOR.powerFlow.stream().limit(SHIP.SHIELDGENERATOR .powerLevels.stream().max());"
         },
         {
             "room": "Life support",
-            "text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().___( tank -> { \nList<Gas> gasses = tank.gasses; \nif(gasses.stream.___(oxygen)){tank.pump();} \nelse{gasses = gasses.stream.___(g -> g.type == oxygen).___;} \n}); ",
+            "text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().___( tank -> { \n\tList<Gas> gasses = tank.gasses; \n\tif(gasses.stream.___(oxygen)){tank.pump();} \n\telse{gasses = gasses.stream.___(g -> g.type == oxygen).___();} \n}); ",
             "answer": ["forEach()", "allMatch()", "filter()", "toList()"],
-            "completed_text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().forEach(tank -> { \nList<Gas> gasses = tank.gasses; \nif(gasses.stream.allMatch(oxygen)){tank.pump();} \nelse{gasses = gasses.stream.filter(g -> g.type == oxygen).toList();} \n});"
+            "completed_text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().forEach(tank -> { \n\tList<Gas> gasses = tank.gasses; \n\tif(gasses.stream.allMatch(oxygen)){tank.pump();} \n\telse{gasses = gasses.stream.filter(g -> g.type == oxygen).toList();} \n});"
         },
         {
             "room": "Main reactor",
@@ -56,7 +56,7 @@
         },
         {
             "room": "Med bay",
-            "text": "// RUNNING MEDICAL BAY DIAGNOSTICS… LOADING… \\ \n// ERROR :: CANNOT ASSESS REMAINING MEDICAL SUPPLIES. SCANNING CAPACITY PRESENTLY LIMITED. :: \\ \n// RECOMMENDATION :: ONLY ASSESS NUMBER OF CRITICAL MED-PATCHES. :: \\ \n\nint medPatchesLeft = SHIP.STORAGE.medicalSupplies.___(medSupply -> medSupply.equals(medPatch)).___; ",
+            "text": "// RUNNING MEDICAL BAY DIAGNOSTICS… LOADING… \\ \n// ERROR :: CANNOT ASSESS REMAINING MEDICAL SUPPLIES. SCANNING CAPACITY PRESENTLY LIMITED. :: \\ \n// RECOMMENDATION :: ONLY ASSESS NUMBER OF CRITICAL MED-PATCHES. :: \\ \n\nint medPatchesLeft = SHIP.STORAGE.medicalSupplies.___(medSupply -> medSupply.equals(medPatch)).___(); ",
             "answer": ["filter()", "count()"],
             "completed_text": "// RUNNING MEDICAL BAY DIAGNOSTICS… LOADING… \\ \n// ERROR :: CANNOT ASSESS REMAINING MEDICAL SUPPLIES. SCANNING CAPACITY PRESENTLY LIMITED. :: \\ \n// RECOMMENDATION :: ONLY ASSESS NUMBER OF CRITICAL MED-PATCHES. :: \\ \n\nint medPatchesLeft = SHIP.STORAGE.medicalSupplies.filter(medSupply -> medSupply.equals(medPatch)).count();"
         },
