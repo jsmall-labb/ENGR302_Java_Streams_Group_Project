@@ -90,7 +90,6 @@ public class Room
     
     public bool AllQuestionsAnswered()
     {
-        
         foreach (Question q in _questions.Values)
         {
             if (!q.IsAnswered())

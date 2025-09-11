@@ -5,15 +5,16 @@ using System.Collections.Generic;
 [ System.Serializable]
 public class Map
 {
-    //TODO will need to be a dictionary of String, Room with String being Room name
-    private List<Room> _rooms;
+
+    private Dictionary<String, Room> _roomDictionary;
+    
     private static QuestionPool _questionPool;
-    //TODO going to need to be a dictionary of rooms with int, String for num of tasks matching the room name.
-    private static List<String> _roomNames = new List<String>
-     {
-          "Room 1", "Room 2", "Room 3", "Room 4", "Room 5",
-         "Room 6", "Room 7", "Room 8", "Room 9", "Room 10"
-     };
+    //Dictionary of rooms with int (room number) and String (room name)
+    private static Dictionary<int, String> _roomNamesAndTaskNum = new Dictionary<int, String>
+    {
+        {1, "Room 1"}, {2, "Room 2"}, {3, "Room 3"}, {4, "Room 4"}, {5, "Room 5"},
+        {6, "Room 6"}, {7, "Room 7"}, {8, "Room 8"}, {9, "Room 9"}, {10, "Room 10"}
+    };
 
     /// <summary>
     /// Initializes the question pool and room list.
@@ -21,7 +22,7 @@ public class Map
     public Map()
     {
         _questionPool = new QuestionPool();
-        _rooms = new List<Room>();
+        _roomDictionary = new Dictionary<string, Room>();
     }
     
     /// <summary>
@@ -33,10 +34,10 @@ public class Map
         
         _questionPool.LoadQuestions();
         
-        //TODO Will need to change
-        foreach (var name in  _roomNames)
+        foreach (var task in _roomNamesAndTaskNum)
         {
-            _rooms.Add(new Room(name, 5, _questionPool));
+            Room room = new Room(task.Value, task.Key, _questionPool);
+            _roomDictionary.Add(task.Value, room);;
         }
         
     }
@@ -48,7 +49,7 @@ public class Map
     /// </summary>
     public void LoadRoom()
     {
-        foreach (var room in _rooms)
+        foreach (var room in _roomDictionary.Values)
         {
             room.Setup();
         }
@@ -60,15 +61,15 @@ public class Map
     /// <param name="index">The index value of room Will be changed to String being Room
     /// name in the future</param>
     /// <returns>Room</returns>
-    public Room GetRoom(int index)
+    public Room GetRoom(String name)
     {
-        return _rooms[index];
+        return _roomDictionary[name];
     }
     
 
     /// <returns>Full list of Rooms</returns>
-    public List<Room> GetRooms()
+    public Dictionary<String, Room> GetRooms()
     {
-        return _rooms;
+        return _roomDictionary;
     }
 }
