@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 [ System.Serializable]
@@ -82,10 +83,10 @@ private int _id;
  /// <returns>True if the input matches the correct answer, false otherwise</returns>
  public bool IsCorrect(List<String> input)
  {
-  for (int i = 0; i < _answer.length; i++)
+  for (int i = 0; i < _answer.Count; i++)
   {
    String pred = input[i];
-   String answer = _answer[i]
+   String answer = _answer[i];
    if (pred != answer)
    {
     return false;
@@ -93,6 +94,7 @@ private int _id;
   }
 
   _isAnswered = true;
+  
   return true;
  }
  
