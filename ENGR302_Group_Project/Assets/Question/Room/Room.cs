@@ -10,6 +10,7 @@ public class Room
     private int _numTasks;
     private static QuestionPool _questionPool;
     private Dictionary<int,Question> _questions;
+//TODO need to change to hold list on answer with in dictionary
     private Dictionary<int, String> _questionAnswers;
     private String _name;
     
@@ -52,6 +53,7 @@ public class Room
     /// </summary>
     private void GetAllAnswers()
     {
+		//TODO need tp change to work with List of answers
         _questionAnswers = new Dictionary<int, String>();
         foreach(Question q in _questions.Values)
         {

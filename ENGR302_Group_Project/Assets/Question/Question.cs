@@ -8,7 +8,7 @@ public class Question
 private int _id;
  private String _room;
  private String _context;
- private String _answer;
+ private List<String> _answer;
  private String _completion;
  private bool _isAnswered;
  
@@ -21,7 +21,7 @@ private int _id;
  /// <param name="context">Context or description of the question</param>
  /// <param name="answer">Correct answer to the question</param>
  /// <param name="completion">Completion status or additional completion info</param>
- public Question(int id, String  room, String context, String answer, String completion)
+ public Question(int id, String  room, String context, List<String> answer, String completion)
  {
   _id = id;
  _room = room;
@@ -61,7 +61,7 @@ private int _id;
  /// Gets the correct answer to the question.
  /// </summary>
  /// <returns>The correct answer as a string</returns>
- public String GetAnswer()
+ public List<String> GetAnswer()
  {
   return _answer;
  }
@@ -80,14 +80,20 @@ private int _id;
  /// </summary>
  /// <param name="input">The input to check against the correct answer</param>
  /// <returns>True if the input matches the correct answer, false otherwise</returns>
- public bool IsCorrect(String input)
+ public bool IsCorrect(List<String> input)
  {
-  if (input == _answer)
+  for (int i = 0; i < _answer.length; i++)
   {
-   _isAnswered = true;
-   return true;
+   String pred = input[i];
+   String answer = _answer[i]
+   if (pred != answer)
+   {
+    return false;
+   }
   }
-  return false;
+
+  _isAnswered = true;
+  return true;
  }
  
  /// <summary>
