@@ -10,8 +10,8 @@ public class RoomTeleporter : MonoBehaviour
 
     private int currentRoomIndex = 0; // internal array index 0-9
 
-    // Adjacency list: room indices (0-based)
-    private Dictionary<int, int[]> adjacency = new Dictionary<int, int[]>()
+    // Make adjacency public so RoomButtonManager can access it
+    public Dictionary<int, int[]> adjacency = new Dictionary<int, int[]>()
     {
         {0, new int[]{1,5}},        // Room1 → Room2 & Room6
         {1, new int[]{0,5}},        // Room2 → Room1 & Room6
@@ -24,6 +24,13 @@ public class RoomTeleporter : MonoBehaviour
         {8, new int[]{6,7,9}},      // Room9 → Room7,8,10
         {9, new int[]{8}}           // Room10 → Room9
     };
+
+    // Event for when room changes (optional - for button updates)
+    public System.Action OnRoomChanged;
+
+    // Public getter for current room
+    public int CurrentRoomIndex => currentRoomIndex;
+    public int CurrentRoomNumber => currentRoomIndex + 1;
 
     void Start()
     {
@@ -66,7 +73,8 @@ public class RoomTeleporter : MonoBehaviour
         if (Keyboard.current.digit0Key.wasPressedThisFrame) TryTeleport(10); // 0 = Room10
     }
 
-    void TryTeleport(int targetRoomNumber)
+    // Make this public so buttons can call it
+    public void TryTeleport(int targetRoomNumber)
     {
         int targetIndex = targetRoomNumber - 1;
 
@@ -84,52 +92,53 @@ public class RoomTeleporter : MonoBehaviour
     }
 
     void TeleportToRoom(int roomIndex)
-{
-    SetupTeleportPoints(); // ensure array is valid
-
-    if (teleportPoints.Length <= roomIndex || teleportPoints[roomIndex] == null)
     {
-        Debug.LogError($"RoomTeleporter: Teleport point for Room {roomIndex + 1} is missing!");
-        return;
+        SetupTeleportPoints(); // ensure array is valid
+
+        if (teleportPoints.Length <= roomIndex || teleportPoints[roomIndex] == null)
+        {
+            Debug.LogError($"RoomTeleporter: Teleport point for Room {roomIndex + 1} is missing!");
+            return;
+        }
+
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+
+        mainCamera.transform.position = teleportPoints[roomIndex].position;
+        mainCamera.transform.rotation = teleportPoints[roomIndex].rotation;
+
+        currentRoomIndex = roomIndex;
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.currentRoom = roomIndex + 1;
+
+        Debug.Log($"Teleported to Room {roomIndex + 1}");
+
+        // Trigger room changed event
+        OnRoomChanged?.Invoke();
     }
 
-    if (mainCamera == null)
-        mainCamera = Camera.main;
-
-    mainCamera.transform.position = teleportPoints[roomIndex].position;
-    mainCamera.transform.rotation = teleportPoints[roomIndex].rotation;
-
-    currentRoomIndex = roomIndex;
-
-    if (GameManager.Instance != null)
-        GameManager.Instance.currentRoom = roomIndex + 1;
-
-    Debug.Log($"Teleported to Room {roomIndex + 1}");
-}
-
-private void SetupTeleportPoints()
-{
-    if (teleportPoints != null && teleportPoints.Length > 0)
-        return; // Already set
-
-    GameObject parent = GameObject.Find("TeleportPos");
-    if (parent == null)
+    private void SetupTeleportPoints()
     {
-        Debug.LogError("RoomTeleporter: TeleportPos object not found!");
-        return;
+        if (teleportPoints != null && teleportPoints.Length > 0)
+            return; // Already set
+
+        GameObject parent = GameObject.Find("TeleportPos");
+        if (parent == null)
+        {
+            Debug.LogError("RoomTeleporter: TeleportPos object not found!");
+            return;
+        }
+
+        List<Transform> points = new List<Transform>();
+        foreach (Transform child in parent.transform)
+            points.Add(child);
+
+        // Sort by name: Room1 → Room10
+        points.Sort((a, b) => a.name.CompareTo(b.name));
+
+        teleportPoints = points.ToArray();
     }
-
-    List<Transform> points = new List<Transform>();
-    foreach (Transform child in parent.transform)
-        points.Add(child);
-
-    // Sort by name: Room1 → Room10
-    points.Sort((a, b) => a.name.CompareTo(b.name));
-
-    teleportPoints = points.ToArray();
-}
-
-
 
     void OnEnable()
     {
@@ -160,7 +169,4 @@ private void SetupTeleportPoints()
         if (GameManager.Instance != null)
             TeleportToRoom(GameManager.Instance.currentRoom - 1); // convert 1-based to 0-based
     }
-
-
-
 }
