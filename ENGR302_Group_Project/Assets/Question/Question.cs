@@ -23,6 +23,7 @@ private int _id;
  /// <param name="completion">Completion status or additional completion info</param>
  public Question(int id, String  room, String context, String answer, String completion)
  {
+  _id = id;
  _room = room;
  _context = context;
  _answer = answer;
@@ -33,7 +34,7 @@ private int _id;
  /// Gets the unique identifier of the question.
  /// </summary>
  /// <returns>The question ID as an integer</returns>
- public int getId()
+ public int GetId()
  {
   return _id;
  }

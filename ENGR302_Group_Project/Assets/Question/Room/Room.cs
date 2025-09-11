@@ -41,7 +41,7 @@ public class Room
         for (int i = 0; i < _numTasks; i++)
         {
             Question q = _questionPool.GetRandomQuestion();
-            _questions.Add(q.getId(), q);
+            _questions.Add(q.GetId(), q);
         }
         GetAllAnswers();
        
@@ -55,7 +55,7 @@ public class Room
         _questionAnswers = new Dictionary<int, String>();
         foreach(Question q in _questions.Values)
         {
-            _questionAnswers.Add(q.getId(), q.GetAnswer());
+            _questionAnswers.Add(q.GetId(), q.GetAnswer());
         }
     }
     
@@ -90,7 +90,6 @@ public class Room
     
     public bool AllQuestionsAnswered()
     {
-        
         foreach (Question q in _questions.Values)
         {
             if (!q.IsAnswered())

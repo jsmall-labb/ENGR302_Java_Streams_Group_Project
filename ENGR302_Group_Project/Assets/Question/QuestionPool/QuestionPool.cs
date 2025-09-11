@@ -14,14 +14,14 @@ public class QuestionPool
     /// </summary>
     public void LoadQuestions()
     {
-        List<Question> questions = JsonReader.GetAllQuestions();
+        List<Question> questions = _jsonReader.GetAllQuestions();
         foreach (Question q in questions)
         {
-            _questions.Add(q.getId(), q);
+            _questions.Add(q.GetId(), q);
         }
     }
     
-    //TODO going to need a condition that if no questions are left it will return null which will need to be handled.
+    
     /// <summary>
     /// Returns a random question from the question pool.
     /// Then deletes the question from the pool.
@@ -29,6 +29,11 @@ public class QuestionPool
     /// <returns>Question</returns>
     public Question GetRandomQuestion()
     {
+        if (_questions.Count == 0)
+        {
+            return null;
+            
+        }
         var random = new Random();
         var randomIndex = random.Next(0, _questions.Count);
         var question = _questions[randomIndex];

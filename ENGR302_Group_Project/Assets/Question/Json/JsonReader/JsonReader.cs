@@ -30,7 +30,7 @@ public class JsonReader
     private static int currentID = 0;
     private static List<Question> returnQuestions = new();
 
-    public static List<Question> GetAllQuestions()
+    public List<Question> GetAllQuestions()
     {
         if (returnQuestions.Count != 0) { return returnQuestions; }
         if (json == null) { Debug.Log("JSON file could not be loaded."); }
