@@ -46,7 +46,7 @@
             "room": "Life support",
             "text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().___( tank -> { \n\tList<Gas> gasses = tank.gasses; \n\tif(gasses.stream.___(oxygen)){tank.pump();} \n\telse{gasses = gasses.stream.___(g -> g.type == oxygen).___();} \n}); ",
             "answer": ["forEach()", "allMatch()", "filter()", "toList()"],
-            "completed_text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().forEach(tank -> { \nList<Gas> gasses = tank.gasses; \nif(gasses.stream.allMatch(oxygen)){tank.pump();} \nelse{gasses = gasses.stream.filter(g -> g.type == oxygen).toList();} \n});"
+            "completed_text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().forEach(tank -> { \n\tList<Gas> gasses = tank.gasses; \n\tif(gasses.stream.allMatch(oxygen)){tank.pump();} \n\telse{gasses = gasses.stream.filter(g -> g.type == oxygen).toList();} \n});"
         },
         {
             "room": "Main reactor",
