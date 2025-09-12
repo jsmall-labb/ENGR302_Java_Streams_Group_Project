@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, total={6in, 8in}]{geometry} 
+\usepackage{tabularx}
+\usepackage{booktabs}
+\renewcommand{\arraystretch}{1.3}
+
+
+\title{Untitled Streams Game - Progress Report}
+\author{ 
+    \textbf{3 Dollar Chicken Tenders}
+    \\
+    David Nangoi: nangoidavi (300604132) \\ 
+    Ran Ju: juran (300653980) \\ 
+    Armin Ruckstuhl: ruckstarmi (300650792) \\ 
+    James Small: smalljame (300652665) \\ 
+    John Reeve: reevejohn (300652183) \\ 
+    Ziggy Redding: reddinzigg (300656072) 
+} 
+\date{}
+
+
+\begin{document}
+\maketitle
+
+\section{Background}
+The purpose of the game is to teach the concept of Java Streams through a series of puzzle-based “Tasks” that reinforce understanding and educate players on the topic. At Te Herenga Waka – Victoria University of Wellington, Java Streams are introduced in the second year of the Computer Science and Engineering bachelor’s degrees in the SWEN221 course. For this reason, the game is targeted at second year and advanced first-year students who are new to the concept. 
+\newline\newline
+Java Streams can be abstract and difficult to grasp through traditional teaching methods alone. Our game aims to act as a bridge of understanding by introducing core ideas, such as filtering, mapping, and reducing via interactive game play. The goal is to help players build intuitive, transferable mental models that can be applied to real-world programming tasks. 
+\newline\newline
+The motivation for this idea came from our own struggles with Java Stream during our second year. Recognizing that many of our peers shared similar challenges, we decided to design an interactive game that supports students in understanding this foundational programming concept. 
+\newline\newline
+The game will be a point-and-click puzzle game. Where you click between rooms of a spaceship to interact with stream-based tasks which fix different parts of the ship until it’s ready for take-off! 
+
+
+
+\section{Revised Measures of Success}
+
+
+\subsection*{Objective 1}
+Our game can be used as a learning tool to help students gain a further understanding of Java Streams. This will be measured using our in-game accuracy and time to completion tracking. A higher accuracy score and a lower completion time are evidence that the student is learning how to use Java Streams more effectively.
+\newline\newline
+Another way we will measure if the student is actively engaging and learning with our tool will be through a random urgent pop-up question that needs solving. This will be a time-limited question and will demonstrate if the student is able to think of a solution on the spot.
+\newline\newline
+We can also include a short assessment when the user loads the game, and then a comparable assessment after they finish. We are then able to distinguish their learning progress through the difference in their results.
+\newline\newline
+Additionally, if time allows, we will test our game on other ENGR302 students as simulated second year students.
+\begin{itemize}
+    \item EEEN (Electrical and Electronics Engineering) Students will stand in for out second year SWEN students, as they have roughly the same level of programming expereince as them, having completed first year programming courses (COMP102/103). They can thus give feedback on if our game is effective at teaching the base concepts from no prior experience.
+    \item SWEN/CYBR students, having all done SWEN221 and mostly done SWEN225, can give us feedback on learning from our game in comparison to those courses. This allows us to see if it is a valuable and enjoyable learning tool compared to traditional methods.
+    \item While this method of testing is not ideal compared to a double-blind test with a control group learning traditionally and a test group learning with our game all taught by people not attached to our group, it is the best form of testing that we can achieve with the time and resources available. The mix of EEEN and SWEN/CYBR students in testing can give us both knowledge of if our game achieves intended learning and is accessible for this, and if it is an engaging tool for more experienced students. We believe this is the best testing methodology that we can reasonably achieve.
+\end{itemize}
+Finally, we will measure our game’s effectiveness through our end of game survey that allows the students to give feedback on the game, what they’ve learnt, and what they think we could improve.
+
+
+
+\subsection*{Objective 2}
+Our game will be convenient and does not require further optimisation in lectures or lab machines.
+\begin{itemize}
+    \item Students should not download software that uses the entire ECS system storage (1.5 GB for 1st year and 3 GB for 2nd year).
+    \item It will run at a stable 1080p, 60FPS on the lab machines.
+    \item It will run at a stable either 60 or 30FPS on student laptops to ensure ease of synchronization.
+    \item The game does not take longer than 1 minute to launch and become playable. The ECS computers will be used to measure this.
+\end{itemize}
+
+
+\subsection*{Objective 3}
+Our game will be easy to set up for new players in a lecture or lab context.
+\begin{itemize}
+    \item A new user, with no previous knowledge of our software, should be able to start a game with their group within 5 minutes.
+    \item Experienced user groups (users who have opened the game more than 3 times) should be able to start a game within 2 minutes.
+\end{itemize}
+
+\subsection*{Objective 4}
+\textit{“If it’s not fun, why bother?”} – Reggie Fils-Aimé.
+\newline
+Our game must be fun. If students don’t enjoy it, they won’t engage with it, and it's use as a learning tool won't be possible. Learning isn't an inherently fun concept to a lot of students, meaning our gameplay must make up for that for the students. Fun will drive student engagement and help increase the depth and ease of learning. 
+\newline\newline
+We will judge this by asking testers/players if they enjoyed the experience within the game itself through a survey after each play-through, or in interviews afterwards. Additionally we can also measure this through how much people play our game during a lab session. With a single play-through being the baseline that everyone needs to participate in, two play-throughs being curiosity to see if they can improve, and three or more showing actual interest in the game and enjoyment in playing it. We will assess how enjoyable our game is through player feedback, either gathered through the in-game survey or through post-play interviews.
+
+
+\section{Design \& Approaches}
+\begin{itemize}
+    \item For our point-and-click movement we choose to show buttons on the screen that the user can click on to move between rooms, with those buttons being placed on different sections of the screen based on the orientation of the room. The user can only move to adjacent rooms from where they are, rather than being able to move across the entire map (decided in previous meetings).
+    \item Decided to use JSON based question storage, to prevent large amounts of hard-coded data and ease of conversion from text to JSON and the implementation into the game.
+    \item We split our team into two separate groups for Sprint 1 (current sprint), with one sub-group focused on writing and implementing questions, and the other focused on basic game functionality, including menus, movement and the map.
+\end{itemize}
+
+
+\section{Progress}
+\subsection*{Question Implementation Team}
+\begin{itemize}
+    \item We have made a full list of starting questions, one for each room, requiring various stream elements to complete, allowing implementation of a minimal viable product (MVP) with a single question per room that covers all necessary stream elements.
+    \item Question to JSON conversion: No formal method for converting a question into JSON exists currently, but all questions have been converted manually into JSON and are loadable into the game.
+    \item JSON to game importation: Question can be converted into Question objects from JSON format.
+    \item Question Implementation: A map object was created to hold all rooms in the game. On initialization, a question pool will be created pulling question objects from the JSON files. These will then be randomly assigned to each room with a set number of questions. This has not yet been integrated into the Unity side of the game.
+\end{itemize}
+\subsection*{Map \& Design Team}
+\begin{itemize}
+    \item Map and movement: We have implemented a 3D spaceship environment with 10 distinct rooms based on our initial paper sketches. Players navigate by clicking to move between adjacent rooms, with the camera smoothly transitioning to show each new location from a fixed viewpoint optimized for gameplay.
+    \item Mini map: A mini map feature displays in the top-left corner, showing an overhead view of the entire spaceship layout with a red indicator marking the player's current location. This helps players understand the ship's structure and navigate more effectively.
+    \item Main menu: We have implemented a functional main menu system that provides game entry and exit options, successfully connecting to our core gameplay environment.
+    \item Pause menu: Players can pause the game at any time and return to the main menu, ensuring smooth user experience and session management.
+    \item Dynamic button system for navigation: We've developed an adaptive navigation system that places movement controls contextually within each room based on its unique layout and available exits. This ensures intuitive room-to-room movement regardless of the varying spaceship architecture.
+    \item Music implementation: Added free Unity asset music. 
+\end{itemize}
+
+
+\section{Challenges}
+\begin{itemize}
+    \item Most of our group has little to no experience in Unity, thus getting initial work started on the project was difficult for most members. However, we got through this with our already existing programming skills and the abundance of online tutorials, allowing quick learning of the C\# language and Unity framework.
+    \item We started major work on the project right as the mid-tri break started, leading to some issues with keeping the group up to date on completed, future and ongoing work.
+    \item We found this project is incredibly front loaded, with a lot of the work being in getting basic functionality working. This has made our first sprint very laborious, but will hopefully pay off in later work as we can use the foundation we've built now.
+\end{itemize}
+
+\section{Sprints \& Goals}
+
+\subsection*{Sprint 1 (Ongoing, implementing basic functionality)}
+\textbf{Goal:} A single MVP that can demonstrate the base functionality.
+\newline
+We are part way through spring 1 now, and still have a small number of tasks to complete in our backlog. We will need an increased level of dedication from all group members to stay on track in the coming weeks.
+\newline\newline
+Remaining tasks to be completed:
+\begin{itemize}
+    \item Question system integrations with Unity.
+    \item Question system UI.
+    \item More decisions on specific implementation for questions, i.e.: how we check if the question was answered correctly.
+\end{itemize}
+
+
+\subsection*{Sprint 2: (To be started, building the bare bones)}
+\textbf{Goal:} Flesh out the bare bone features that are implemented in sprint 1. Adding player performance checks to evaluate the player on how they are doing in game.
+\newline\newline
+Tasks to be completed:
+\begin{itemize}
+    \item Map/screen decoration with additional assets.
+    \item Data logging on question, task and game completion times and accuracy to measure performance and be viewed by students. Essential for satisfying our primary measure of success.
+    \item Group individual questions into larger tasks for a more engaging experience.
+    \item Automated written question to JSON conversion.
+\end{itemize}
+
+
+\subsection*{Sprint 3: (To be started, final touches and polish)}
+\textbf{Goal:} Finishing touches and polish. Adding  multiplayer and security features. Things that are nice to have but are not critical and may be cut due to time constraints.
+\newline\newline
+Tasks to be completed:
+\begin{itemize}
+    \item Multiplayer functionality for co-op gameplay.
+    \item Use HTTPS instead of HTTP to hide the content of each packet to prevent sniffing.
+    \item A more logical and detailed ship layout, more closely related to the initial design.
+    \item Having movement options for WASD as well as point-and-click to increase accessibility.
+    \item More map choice/scenarios to play such as practice and challenge mode.
+    \item Automated stream question generation
+\end{itemize}
+
+
+\section{Conclusion \& Closing Thoughts}
+We have made some decent progress towards our game over this trimester so far, but we will need to greatly improve and ramp up our efforts over the next 6 weeks to get it all done on time. However, we feel confident that we will be able to pull together for this and get it all done!
+\end{document}
