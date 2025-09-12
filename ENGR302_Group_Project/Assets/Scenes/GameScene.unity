@@ -1130,10 +1130,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 429720812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236728cd03a72a144a6b5749a3c82c9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 984d06d36c276c1479d971b964aaf86d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 4344566570779415606, guid: 8a86e6c5a70838d4d8e28510837fd9ec, type: 3}
+  buttonPrefab: {fileID: 1884975731}
   buttonPanel: {fileID: 839968590}
   roomTeleporter: {fileID: 375578792}
   roomNames:
@@ -3547,6 +3547,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1884975731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4344566570779415606, guid: 8a86e6c5a70838d4d8e28510837fd9ec, type: 3}
+  m_PrefabInstance: {fileID: 881727248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2007043543
 GameObject:
   m_ObjectHideFlags: 0
