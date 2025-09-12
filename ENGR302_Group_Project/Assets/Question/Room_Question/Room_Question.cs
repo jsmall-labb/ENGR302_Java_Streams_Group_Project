@@ -14,11 +14,11 @@ public class Room_Question
     private Dictionary<int, List<String>> _questionAnswers;
     private String _name;
     
-    private static List<String> _roomNames = new List<String>
-    {
-        "Room 1", "Room 2", "Room 3", "Room 4", "Room 5",
-        "Room 6", "Room 7", "Room 8", "Room 9", "Room 10"
-    };
+    // private static List<String> _roomNames = new List<String>
+    // {
+    //     "Room 1", "Room 2", "Room 3", "Room 4", "Room 5",
+    //     "Room 6", "Room 7", "Room 8", "Room 9", "Room 10"
+    // };
     
     /// <summary>
     /// Initializes Room with name, number of tasks, and question pool.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class QuestionPool
 {
-    private Dictionary<int, Question> _questions;
+    private Dictionary<int, Question> _questions = new Dictionary<int, Question>();
     private static JsonReader _jsonReader = new JsonReader();
     
     public QuestionPool() {}
