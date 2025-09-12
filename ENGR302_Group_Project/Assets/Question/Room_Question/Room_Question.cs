@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 
 [ System.Serializable]
-public class Room
+public class Room_Question
 {
     private int _numTasks;
     private static QuestionPool _questionPool;
@@ -26,7 +26,7 @@ public class Room
     /// <param name="name">Name of the Room</param>
     /// <param name="numtasks">Number of tasks, matches the number of questions required from the question pool</param>
     /// <param name="questionPool">Holds all questions in the game</param>
-    public Room(String name, int numtasks, QuestionPool questionPool)
+    public Room_Question(String name, int numtasks, QuestionPool questionPool)
     {
         _numTasks = numtasks;
         _questionPool = questionPool;

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Map
 {
 
-    private Dictionary<String, Room> _roomDictionary;
+    private Dictionary<String, Room_Question> _roomDictionary;
     
     private static QuestionPool _questionPool;
     //Dictionary of rooms with int (room number) and String (room name)
@@ -22,7 +22,7 @@ public class Map
     public Map()
     {
         _questionPool = new QuestionPool();
-        _roomDictionary = new Dictionary<string, Room>();
+        _roomDictionary = new Dictionary<string, Room_Question>();
     }
     
     /// <summary>
@@ -36,7 +36,7 @@ public class Map
         
         foreach (var task in _roomNamesAndTaskNum)
         {
-            Room room = new Room(task.Value, task.Key, _questionPool);
+            Room_Question room = new Room_Question(task.Value, task.Key, _questionPool);
             _roomDictionary.Add(task.Value, room);;
         }
         
@@ -61,14 +61,14 @@ public class Map
     /// <param name="index">The index value of room Will be changed to String being Room
     /// name in the future</param>
     /// <returns>Room</returns>
-    public Room GetRoom(String name)
+    public Room_Question GetRoom(String name)
     {
         return _roomDictionary[name];
     }
     
 
     /// <returns>Full list of Rooms</returns>
-    public Dictionary<String, Room> GetRooms()
+    public Dictionary<String, Room_Question> GetRooms()
     {
         return _roomDictionary;
     }
