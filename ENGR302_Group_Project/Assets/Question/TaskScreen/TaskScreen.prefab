@@ -115,12 +115,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1700704207097653268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4328d600b94e51743a3231ca896ab29b, type: 3}
+  m_Script: {fileID: 11500000, guid: 40901f4c76892e748b1532ed91e1732c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 2602111306227095356, guid: 9a99604d7530883469c92950e265d324, type: 3}
-  buttonPanel: {fileID: 7411659013217609628}
-  numberOfButtons: 5
+  buttonPrefab: {fileID: 0}
+  buttonPanel: {fileID: 0}
 --- !u!114 &2626251770427368713
 MonoBehaviour:
   m_ObjectHideFlags: 0

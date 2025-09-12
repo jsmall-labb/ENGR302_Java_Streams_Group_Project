@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 40901f4c76892e748b1532ed91e1732c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - buttonPrefab: {fileID: 2602111306227095356, guid: 678f444f8c2a67d438444d13bee0229a, type: 3}
+  - buttonPanel: {fileID: 7411659013217609628, guid: 8cc7817d175f61a43b269a68ca0f1f5f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

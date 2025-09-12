@@ -3,6 +3,17 @@ using UnityEngine.InputSystem;
 
 public class CubeClickHandler : MonoBehaviour
 {
+    [Header("Prefab Settings")]
+    public GameObject prefabToSpawn; // Drag your prefab here in the Inspector
+    public Vector3 spawnOffset = new Vector3(0, 2, 0); // Where to spawn relative to cube
+    
+    [Header("Spawn Options")]
+    public bool destroyPreviousPrefab = true; // Destroy old prefab when spawning new one
+    public bool lookAtCamera = false; // Make prefab face the camera
+    
+    private GameObject spawnedPrefab;
+    private static GameObject globalSpawnedPrefab; // Track prefab across all cubes
+    
     void Start()
     {
         // Make sure the cube has a collider for mouse detection
@@ -31,14 +42,55 @@ public class CubeClickHandler : MonoBehaviour
         // Check if ray hits this cube
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            // If the hit object is this cube, log the message
+            // If the hit object is this cube, spawn the prefab
             if (hit.collider.gameObject == gameObject)
             {
-            	// Show your menu (UNCOMMENT WHEN MERGED)
-				// yourMenuGameObject.SetActive(true);
-				// Debug.Log($"Menu opened by cube '{gameObject.name}'!");
-                Debug.Log($"Cube '{gameObject.name}' was clicked!");
+                SpawnPrefab();
             }
+        }
+    }
+    
+    void SpawnPrefab()
+    {
+        if (prefabToSpawn == null)
+        {
+            Debug.LogWarning("No prefab assigned to spawn!");
+            return;
+        }
+        
+        // Destroy previous prefab if enabled
+        if (destroyPreviousPrefab && globalSpawnedPrefab != null)
+        {
+            Destroy(globalSpawnedPrefab);
+        }
+        
+        // Calculate spawn position
+        Vector3 spawnPosition = transform.position + spawnOffset;
+        
+        // Spawn the prefab
+        spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+        globalSpawnedPrefab = spawnedPrefab;
+        
+        // Optional: Make prefab face the camera
+        if (lookAtCamera && Camera.main != null)
+        {
+            spawnedPrefab.transform.LookAt(Camera.main.transform);
+            spawnedPrefab.transform.Rotate(0, 180, 0); // Flip if needed
+        }
+        
+        Debug.Log($"Prefab spawned by cube '{gameObject.name}' at position {spawnPosition}");
+    }
+    
+    // Method to destroy the spawned prefab (can be called from UI buttons)
+    public void DestroySpawnedPrefab()
+    {
+        if (spawnedPrefab != null)
+        {
+            Destroy(spawnedPrefab);
+            spawnedPrefab = null;
+            
+            if (globalSpawnedPrefab == spawnedPrefab)
+                globalSpawnedPrefab = null;
         }
     }
 }
