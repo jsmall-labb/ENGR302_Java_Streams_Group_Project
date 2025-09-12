@@ -1690,7 +1690,6 @@ GameObject:
   - component: {fileID: 839968590}
   - component: {fileID: 839968592}
   - component: {fileID: 839968591}
-  - component: {fileID: 839968593}
   m_Layer: 5
   m_Name: btnpanel
   m_TagString: Untagged
@@ -1755,32 +1754,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839968589}
   m_CullTransparentMesh: 1
---- !u!114 &839968593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839968589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 50
-    m_Bottom: 50
-  m_ChildAlignment: 7
-  m_Spacing: 20
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &864521188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3656,7 +3629,6 @@ SceneRoots:
   - {fileID: 515376484}
   - {fileID: 558476113}
   - {fileID: 943834643}
-  - {fileID: 453882714}
   - {fileID: 423548784}
   - {fileID: 1072944620}
   - {fileID: 259709895}
@@ -3664,6 +3636,7 @@ SceneRoots:
   - {fileID: 1868330464}
   - {fileID: 83409214}
   - {fileID: 1787855791}
+  - {fileID: 453882714}
   - {fileID: 1467810519}
   - {fileID: 221096858}
   - {fileID: 618620635}
