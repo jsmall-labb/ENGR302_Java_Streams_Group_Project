@@ -22,13 +22,20 @@ public class PauseMenu : MonoBehaviour
                 PauseGame();
         }
     }
+
+    void Start()
+    {
+        if (pauseCanvas != null)
+            pauseCanvas.SetActive(false); // always start hidden
+    }
+
     
     public void PauseGame()
     {
         pauseCanvas.SetActive(true);
         Time.timeScale = 0f;
         if (musicSource != null)
-            musicSource.Pause(); // 🔇 stop music playback
+            musicSource.Pause(); // stop music playback
         isPaused = true;
     }
     
@@ -37,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         pauseCanvas.SetActive(false);
         Time.timeScale = 1f;
         if (musicSource != null)
-            musicSource.UnPause(); // 🔊 resume music from same spot
+            musicSource.UnPause(); // resume music from same spot
         isPaused = false;
     }
     
