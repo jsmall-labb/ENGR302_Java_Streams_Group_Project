@@ -361,6 +361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &134349432
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +700,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &259709891
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +826,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &310085294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &429720812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1717,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &651632391
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,6 +2042,7 @@ GameObject:
   - component: {fileID: 839968590}
   - component: {fileID: 839968592}
   - component: {fileID: 839968591}
+  - component: {fileID: 839968593}
   m_Layer: 5
   m_Name: btnpanel
   m_TagString: Untagged
@@ -2086,6 +2107,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839968589}
   m_CullTransparentMesh: 1
+--- !u!114 &839968593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839968589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 50
+  m_ChildAlignment: 7
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &864521188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2542,6 +2589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &921997472
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,6 +3348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &1086564468
 GameObject:
   m_ObjectHideFlags: 0
@@ -3906,6 +3961,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &1494534597
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,6 +4499,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &1863413633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,6 +4726,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099808972ca9ab04bb8d93ef54b78790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 1700704207097653268, guid: e495b28d1310399409d50265a4f0d0a5, type: 3}
+  spawnOffset: {x: 0, y: 2, z: 0}
+  destroyPreviousPrefab: 1
+  lookAtCamera: 0
 --- !u!1 &1884975731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4344566570779415606, guid: 8a86e6c5a70838d4d8e28510837fd9ec, type: 3}
