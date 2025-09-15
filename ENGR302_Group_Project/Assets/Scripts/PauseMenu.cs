@@ -1,108 +1,56 @@
-// PauseMenu.cs
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-    [Header("UI")]
-    public GameObject pauseCanvas; // assign PauseCanvas here
+    [Header("UI References")]
+    [SerializeField] private GameObject pauseCanvas;
 
-    [Header("Input / Behavior")]
-    public bool useTimeScalePause = true; // freeze time by default
-    public MonoBehaviour[] disableOnPause; // list scripts (player controller, AI) to disable
-    public bool unlockCursorOnPause = true;
+    [Header("Audio")]
+    [SerializeField] private AudioSource musicSource; // drag your background music here
 
-    [Header("Optional")]
-    public string mainMenuSceneName = "Main_Menu"; // if you want to load main menu
-
-    bool isPaused = false;
-
-    void Start()
-    {
-        if (pauseCanvas != null) pauseCanvas.SetActive(false);
-        isPaused = false;
-    }
+    private bool isPaused = false;
 
     void Update()
     {
-        // new Input System: toggle on Escape
-        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        // Toggle pause with Escape
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused) ResumeGame();
-            else PauseGame();
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
         }
     }
 
     public void PauseGame()
     {
-        if (pauseCanvas != null) pauseCanvas.SetActive(true);
+        pauseCanvas.SetActive(true);
+        Time.timeScale = 0f;
 
-        if (useTimeScalePause) Time.timeScale = 0f;
-
-        // disable specified scripts
-        if (disableOnPause != null)
-        {
-            foreach (var m in disableOnPause)
-            {
-                if (m != null) m.enabled = false;
-            }
-        }
-
-        if (unlockCursorOnPause)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        if (musicSource != null)
+            musicSource.Pause(); // 🔇 stop music playback
 
         isPaused = true;
     }
 
     public void ResumeGame()
     {
-        if (pauseCanvas != null) pauseCanvas.SetActive(false);
+        pauseCanvas.SetActive(false);
+        Time.timeScale = 1f;
 
-        if (useTimeScalePause) Time.timeScale = 1f;
-
-        if (disableOnPause != null)
-        {
-            foreach (var m in disableOnPause)
-            {
-                if (m != null) m.enabled = true;
-            }
-        }
-
-        if (unlockCursorOnPause)
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked; // or set your preferred state
-        }
+        if (musicSource != null)
+            musicSource.UnPause(); // 🔊 resume music from same spot
 
         isPaused = false;
     }
 
-    // Hook this to "Main Menu" button OnClick if you want to leave to main menu
-    public void GoToMainMenu()
+    public void QuitToMainMenu(string mainMenuSceneName)
     {
-        // ensure game is unpaused before loading scene
-        Time.timeScale = 1f;
-        // optionally reset progress here or use your ToMainMenu/ChangeScene logic
-        SceneManager.LoadScene(mainMenuSceneName);
-    }
+        Time.timeScale = 1f; // reset in case you quit while paused
 
-    public void QuitGame()
-    {
-        // unpause to avoid frozen editor weirdness
-        Time.timeScale = 1f;
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-    }
+        if (musicSource != null)
+            musicSource.Stop(); // optional: fully stop music if returning to menu
 
-    // Safety: ensure timeScale restored if object destroyed
-    void OnDestroy()
-    {
-        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuSceneName);
     }
 }
