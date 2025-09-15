@@ -80,7 +80,7 @@ public class Room_Question
         return _questions[id];
     }
 
-    public Dictionary<int, Question> getAllQuestions()
+    public Dictionary<int, Question> GetAllQuestions()
     {
         return _questions;
     }
