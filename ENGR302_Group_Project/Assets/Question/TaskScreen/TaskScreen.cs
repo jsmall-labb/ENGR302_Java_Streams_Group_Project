@@ -36,7 +36,7 @@ public class TaskScreen : MonoBehaviour
     // Prefab runs this method and passes relevant question and action to complete when correct.
     // _question is the displayed question.
     // _onComplete is a lambda that gets run when correctly completed.
-    void Execute(Question _question, Action _onComplete)
+    public void Execute(Question _question, Action _onComplete)
     {
         onComplete = _onComplete;
         mainText = GetComponent<Text>();
