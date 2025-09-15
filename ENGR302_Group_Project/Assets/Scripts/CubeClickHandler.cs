@@ -41,11 +41,11 @@ public class CubeClickHandler : MonoBehaviour
     void CheckForCubeClick()
     {
 
-        // Don't allow clicking if mouse is over UI
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        {
-            return; // Exit early if mouse is over UI
-        }
+        // // Don't allow clicking if mouse is over UI
+        // if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        // {
+        //     return; // Exit early if mouse is over UI
+        // }
         // Get mouse position and create a ray from camera
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
