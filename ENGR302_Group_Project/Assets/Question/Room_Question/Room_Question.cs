@@ -79,6 +79,11 @@ public class Room_Question
     {
         return _questions[id];
     }
+
+    public Dictionary<int, Question> getAllQuestions()
+    {
+        return _questions;
+    }
     
     /// <summary>
     /// Returns the name of the room.
