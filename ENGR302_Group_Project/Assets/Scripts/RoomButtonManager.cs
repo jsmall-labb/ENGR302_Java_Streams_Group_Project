@@ -117,7 +117,7 @@ public class RoomButtonManager : MonoBehaviour
     }
 
     // Helper method to get current room index from teleporter
-    int GetCurrentRoomIndex()
+    public int GetCurrentRoomIndex()
     {
         // Access the private field using reflection or make it public/protected
         // For now, we'll use GameManager as your teleporter does
