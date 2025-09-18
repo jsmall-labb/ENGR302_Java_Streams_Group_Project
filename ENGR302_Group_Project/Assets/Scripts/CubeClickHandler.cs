@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
 
 public class CubeClickHandler : MonoBehaviour
 {
@@ -16,6 +16,8 @@ public class CubeClickHandler : MonoBehaviour
     
     private GameObject spawnedPrefab;
     private static GameObject globalSpawnedPrefab; // Track prefab across all cubes
+
+    private bool Paused = false;
 
     void Start()
     {
@@ -40,12 +42,7 @@ public class CubeClickHandler : MonoBehaviour
     
     void CheckForCubeClick()
     {
-
-        // // Don't allow clicking if mouse is over UI
-        // if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        // {
-        //     return; // Exit early if mouse is over UI
-        // }
+        if (Paused) { return; }
         // Get mouse position and create a ray from camera
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -59,6 +56,15 @@ public class CubeClickHandler : MonoBehaviour
                 SpawnPrefab();
             }
         }
+    }
+
+    void PauseInteraction()
+    {
+        Paused = true;
+    }
+    void ResumeInteraction()
+    {
+        Paused = false;
     }
 
     void SpawnPrefab()
@@ -94,12 +100,31 @@ public class CubeClickHandler : MonoBehaviour
         Debug.Log($"Prefab spawned by cube '{gameObject.name}' at position {spawnPosition}");
 
 
-        // Replae the two lines below to use MapManager in order to get the correct question per room rather than the same.
+        // Replace the three lines below to use MapManager in order to get the correct question per room rather than the same.
         JsonReader jr = new();
-        Question question = jr.GetAllQuestions()[0];
+        Question question;
+
+        RoomButtonManager roomButtonManager = FindFirstObjectByType<RoomButtonManager>();
+        if (roomButtonManager != null)
+        {
+            question = jr.GetAllQuestions()[roomButtonManager.GetCurrentRoomIndex()];
+        }
+        else
+        {
+            int index = UnityEngine.Random.Range(0, jr.GetAllQuestions().Count);
+            question = jr.GetAllQuestions()[index];
+        }
 
 
-        Action completionAction = () => Destroy(spawnedPrefab);
+        // Before these lines other buttons need to be paused (including CubeClickHandler) to prevent unintended behaviour.
+
+        PauseInteraction();
+
+        Action completionAction = () =>
+        {
+            Destroy(spawnedPrefab);
+            ResumeInteraction();
+        };
         spawnedPrefab.GetComponent<TaskScreen>().Execute(question, completionAction);
     }
     

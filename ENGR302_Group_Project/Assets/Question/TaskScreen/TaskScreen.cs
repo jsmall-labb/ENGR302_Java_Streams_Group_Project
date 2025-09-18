@@ -8,6 +8,7 @@ using System;
 public class TaskScreen : MonoBehaviour
 {
     public GameObject buttonPrefab;  // Prefab of the button to be used
+    public GameObject textPrefab;
     public Transform buttonPanel;    // Parent object to hold the buttons (e.g. a UI Panel)
     private List<Button> buttons = new();   // List to hold buttons
 
@@ -38,11 +39,23 @@ public class TaskScreen : MonoBehaviour
     // _onComplete is a lambda that gets run when correctly completed.
     public void Execute(Question _question, Action _onComplete)
     {
+
         onComplete = _onComplete;
-        mainText = GetComponent<Text>();
         question = _question;
+        ClearButtons();
+
+        GameObject textObject = Instantiate(textPrefab, GetComponent<RectTransform>());
+        mainText = textObject.GetComponent<Text>();
+        textObject.transform.SetAsFirstSibling();
         mainText.text = question.GetContext();
+
+        mainText.text = Regex.Replace(mainText.text, "___", "<color=blue>___</color>");
+
+
+        textObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 2, 20);
+
         CreateButtons(question.GetAnswer().Count);
+
     }
 
 
@@ -58,7 +71,9 @@ public class TaskScreen : MonoBehaviour
     void CreateButtons(int buttonCount)
     {
 
-        ClearButtons();
+        // RectTransform rectTransform = buttonPanel.GetComponent<RectTransform>();
+        // rectTransform.sizeDelta = new Vector2(Screen.width, rectTransform.sizeDelta.y);
+        // rectTransform.position = new Vector3(0, Screen.height / 2);
 
         for (int i = 0; i < buttonCount; i++)
         {
@@ -80,7 +95,7 @@ public class TaskScreen : MonoBehaviour
         panelRect.anchorMin = new Vector2(0.5f, 0);   // Anchor to bottom-center of the canvas
         panelRect.anchorMax = new Vector2(0.5f, 0);   // Anchor to bottom-center of the canvas
         panelRect.pivot = new Vector2(0.5f, 0);       // Set pivot to center at the bottom
-        panelRect.anchoredPosition = new Vector2(0, 50);  // Small offset above the bottom (optional)
+        // panelRect.anchoredPosition = new Vector2(0, 50);  // Small offset above the bottom (optional)
 
 
         // Instantiate the button and get the necessary components
