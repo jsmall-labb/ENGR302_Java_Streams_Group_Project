@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
                 PauseGame();
         }
     }
+<<<<<<< Updated upstream
 
     void Start()
     {
@@ -29,13 +30,19 @@ public class PauseMenu : MonoBehaviour
             pauseCanvas.SetActive(false); // always start hidden
     }
 
+=======
+>>>>>>> Stashed changes
     
     public void PauseGame()
     {
         pauseCanvas.SetActive(true);
         Time.timeScale = 0f;
         if (musicSource != null)
+<<<<<<< Updated upstream
             musicSource.Pause(); // stop music playback
+=======
+            musicSource.Pause(); // 🔇 stop music playback
+>>>>>>> Stashed changes
         isPaused = true;
     }
     
@@ -44,7 +51,11 @@ public class PauseMenu : MonoBehaviour
         pauseCanvas.SetActive(false);
         Time.timeScale = 1f;
         if (musicSource != null)
+<<<<<<< Updated upstream
             musicSource.UnPause(); // resume music from same spot
+=======
+            musicSource.UnPause(); // 🔊 resume music from same spot
+>>>>>>> Stashed changes
         isPaused = false;
     }
     
