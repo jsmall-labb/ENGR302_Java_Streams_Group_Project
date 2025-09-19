@@ -7,12 +7,16 @@ public class ToMainMenu : MonoBehaviour
     public bool resetProgressOnLoad = false; // toggle in Inspector
 
     public void LoadScene()
-    {
-        if (resetProgressOnLoad && GameManager.Instance != null)
-        {
-            GameManager.Instance.ResetProgress();
-        }
+{
+    // Ensure time is unpaused before loading a new scene
+    Time.timeScale = 1f;
 
-        SceneManager.LoadScene(sceneToLoad);
+    if (resetProgressOnLoad && GameManager.Instance != null)
+    {
+        GameManager.Instance.ResetProgress();
     }
+
+    SceneManager.LoadScene(sceneToLoad);
+}
+
 }
