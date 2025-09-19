@@ -1,19 +1,45 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private GameObject pauseCanvas;
 
+    private CanvasGroup pauseCanvasGroup; // auto-detected CanvasGroup
+
     [Header("Audio")]
-    [SerializeField] private AudioSource musicSource; // drag your background music here
+    [SerializeField] private AudioSource musicSource;
 
     private bool isPaused = false;
 
+    void Start()
+    {
+        if (pauseCanvas == null)
+        {
+            Debug.LogError("PauseMenu: Pause Canvas is not assigned!");
+            return;
+        }
+
+        // Try to get the CanvasGroup on pauseCanvas
+        pauseCanvasGroup = pauseCanvas.GetComponent<CanvasGroup>();
+        if (pauseCanvasGroup == null)
+        {
+            // Add one if it doesn't exist
+            pauseCanvasGroup = pauseCanvas.AddComponent<CanvasGroup>();
+        }
+
+        // Hide menu initially
+        pauseCanvas.SetActive(false);
+        pauseCanvasGroup.alpha = 0f;
+        pauseCanvasGroup.interactable = false;
+        pauseCanvasGroup.blocksRaycasts = false;
+    }
+
     void Update()
     {
-        // Toggle pause with Escape
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (isPaused)
                 ResumeGame();
@@ -25,32 +51,39 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         pauseCanvas.SetActive(true);
+        pauseCanvasGroup.alpha = 1f;
+        pauseCanvasGroup.interactable = true;
+        pauseCanvasGroup.blocksRaycasts = true;
+
         Time.timeScale = 0f;
 
         if (musicSource != null)
-            musicSource.Pause(); // 🔇 stop music playback
+            musicSource.Pause();
 
         isPaused = true;
     }
 
     public void ResumeGame()
     {
+        pauseCanvasGroup.alpha = 0f;
+        pauseCanvasGroup.interactable = false;
+        pauseCanvasGroup.blocksRaycasts = false;
         pauseCanvas.SetActive(false);
+
         Time.timeScale = 1f;
 
         if (musicSource != null)
-            musicSource.UnPause(); // 🔊 resume music from same spot
+            musicSource.UnPause();
 
         isPaused = false;
     }
 
     public void QuitToMainMenu(string mainMenuSceneName)
     {
-        Time.timeScale = 1f; // reset in case you quit while paused
-
+        Time.timeScale = 1f;
         if (musicSource != null)
-            musicSource.Stop(); // optional: fully stop music if returning to menu
+            musicSource.Stop();
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }
