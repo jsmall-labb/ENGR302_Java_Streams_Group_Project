@@ -365,6 +365,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 4
 --- !u!1 &134349432
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +706,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 2
 --- !u!1 &259709891
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +834,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 6
 --- !u!1 &310085294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1263,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 0
 --- !u!1 &429720812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,6 +2052,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 5
 --- !u!1 &651632391
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,6 +3198,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 9
 --- !u!1 &921997472
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,6 +4244,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 1
 --- !u!1 &1086564468
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,6 +4934,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 3
 --- !u!1 &1494534597
 GameObject:
   m_ObjectHideFlags: 0
@@ -5756,6 +5772,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 7
 --- !u!1 &1863413633
 GameObject:
   m_ObjectHideFlags: 0
@@ -5983,6 +6001,8 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 2, z: 0}
   destroyPreviousPrefab: 1
   lookAtCamera: 0
+  completedMaterial: {fileID: 0}
+  assignedQuestionIndex: 8
 --- !u!1 &1884975731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4344566570779415606, guid: 8a86e6c5a70838d4d8e28510837fd9ec, type: 3}

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,10 +13,17 @@ public class CubeClickHandler : MonoBehaviour
     public bool destroyPreviousPrefab = true; // Destroy old prefab when spawning new one
     public bool lookAtCamera = false; // Make prefab face the camera
     
+    [Header("Visual Feedback")]
+    public Material completedMaterial; // Optional: Material to show completed cubes
+    
+    [Header("Question Assignment")]
+    [SerializeField] private int assignedQuestionIndex = -1; // Manually assign in inspector or use auto-assignment
+    
     private GameObject spawnedPrefab;
     private static GameObject globalSpawnedPrefab; // Track prefab across all cubes
-
     private bool Paused = false;
+    private Renderer cubeRenderer; // For visual feedback
+    private Material originalMaterial; // Store original material
 
     void Start()
     {
@@ -27,8 +33,19 @@ public class CubeClickHandler : MonoBehaviour
             Debug.LogWarning($"No collider found on {gameObject.name}. Adding BoxCollider for mouse detection.");
             gameObject.AddComponent<BoxCollider>();
         }
-
-
+        
+        // Store renderer for visual feedback
+        cubeRenderer = GetComponent<Renderer>();
+        if (cubeRenderer != null)
+        {
+            originalMaterial = cubeRenderer.material;
+        }
+        
+        // Determine question index for this cube
+        DetermineQuestionIndex();
+        
+        // Update visual state based on completion
+        UpdateVisualState();
     }
     
     void Update()
@@ -43,6 +60,14 @@ public class CubeClickHandler : MonoBehaviour
     void CheckForCubeClick()
     {
         if (Paused) { return; }
+        
+        // Check if this question is already completed
+        if (assignedQuestionIndex >= 0 && GameStatsManager.Instance.IsQuestionCompleted(assignedQuestionIndex))
+        {
+            Debug.Log($"Question {assignedQuestionIndex} already completed! Cube click ignored for {gameObject.name}.");
+            return; // Don't open task screen for completed questions
+        }
+        
         // Get mouse position and create a ray from camera
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -58,19 +83,54 @@ public class CubeClickHandler : MonoBehaviour
         }
     }
 
+    void DetermineQuestionIndex()
+    {
+        // Method 1: Use manually assigned index (set in inspector)
+        if (assignedQuestionIndex >= 0)
+        {
+            Debug.Log($"Cube {gameObject.name} using manually assigned question index: {assignedQuestionIndex}");
+            return;
+        }
+
+    }
+
     void PauseInteraction()
     {
         Paused = true;
     }
+    
     void ResumeInteraction()
     {
         Paused = false;
     }
+    
+    void UpdateVisualState()
+    {
+        if (cubeRenderer == null) return;
+        
+        // Change appearance if question is completed
+        if (assignedQuestionIndex >= 0 && GameStatsManager.Instance.IsQuestionCompleted(assignedQuestionIndex))
+        {
+            if (completedMaterial != null)
+            {
+                cubeRenderer.material = completedMaterial;
+            }
+            else
+            {
+                // Default: Make it darker/greener to show completion
+                Color completedColor = Color.green;
+                completedColor.a = 0.7f;
+                cubeRenderer.material.color = completedColor;
+            }
+        }
+        else
+        {
+            cubeRenderer.material = originalMaterial;
+        }
+    }
 
     void SpawnPrefab()
     {
-        
-
         if (prefabToSpawn == null)
         {
             Debug.LogWarning("No prefab assigned to spawn!");
@@ -99,37 +159,22 @@ public class CubeClickHandler : MonoBehaviour
 
         Debug.Log($"Prefab spawned by cube '{gameObject.name}' at position {spawnPosition}");
 
+        // Get the correct question for THIS specific cube
+        Question question = QuestionDatabase.All[assignedQuestionIndex];
 
-        // Replace the three lines below to use MapManager in order to get the correct question per room rather than the same.
-        JsonReader jr = new();
-        Question question;
+        Debug.Log($"Cube {gameObject.name} opening question {assignedQuestionIndex}: {question.GetContext()}");
 
-        RoomButtonManager roomButtonManager = FindFirstObjectByType<RoomButtonManager>();
-        if (roomButtonManager != null)
-        {
-            question = jr.GetAllQuestions()[roomButtonManager.GetCurrentRoomIndex()];
-        }
-        else
-        {
-            int index = UnityEngine.Random.Range(0, jr.GetAllQuestions().Count);
-            question = jr.GetAllQuestions()[index];
-        }
-
-
-        // Before these lines other buttons need to be paused (including CubeClickHandler) to prevent unintended behaviour.
-
-        RoomTeleporter teleporter = FindFirstObjectByType<RoomTeleporter>();
-
+        // Pause interaction
         PauseInteraction();
-        teleporter.DisableTeleport();
 
         Action completionAction = () =>
         {
             Destroy(spawnedPrefab);
             ResumeInteraction();
-            teleporter.EnableTeleport();
+            UpdateVisualState(); // Update appearance after completion
         };
-        spawnedPrefab.GetComponent<TaskScreen>().Execute(question, completionAction);
+        
+        spawnedPrefab.GetComponent<TaskScreen>().Execute(question, completionAction, assignedQuestionIndex);
     }
     
     // Method to destroy the spawned prefab (can be called from UI buttons)
@@ -143,5 +188,11 @@ public class CubeClickHandler : MonoBehaviour
             if (globalSpawnedPrefab == spawnedPrefab)
                 globalSpawnedPrefab = null;
         }
+    }
+    
+    // Public method to refresh visual state (call this when stats change)
+    public void RefreshVisualState()
+    {
+        UpdateVisualState();
     }
 }
