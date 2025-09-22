@@ -9,6 +9,7 @@ public class RoomTeleporter : MonoBehaviour
     public Camera mainCamera;          // Camera with AudioListener (optional in Inspector)
 
     private int currentRoomIndex = 0; // internal array index 0-9
+    private bool canTeleport = true;
 
     // Make adjacency public so RoomButtonManager can access it
     public Dictionary<int, int[]> adjacency = new Dictionary<int, int[]>()
@@ -76,6 +77,7 @@ public class RoomTeleporter : MonoBehaviour
     // Make this public so buttons can call it
     public void TryTeleport(int targetRoomNumber)
     {
+        if (!canTeleport) { return; }
         int targetIndex = targetRoomNumber - 1;
 
         if (!adjacency.ContainsKey(currentRoomIndex))
@@ -168,5 +170,16 @@ public class RoomTeleporter : MonoBehaviour
         // 3. Move camera to current room
         if (GameManager.Instance != null)
             TeleportToRoom(GameManager.Instance.currentRoom - 1); // convert 1-based to 0-based
+    }
+
+
+    public void DisableTeleport()
+    {
+        canTeleport = false;
+    }
+
+    public void EnableTeleport()
+    {
+        canTeleport = true;
     }
 }
