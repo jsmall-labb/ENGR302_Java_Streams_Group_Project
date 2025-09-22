@@ -25,6 +25,9 @@ public class GameStatsManager : MonoBehaviour
     
     [Header("Individual Question Stats")]
     public List<QuestionResult> questionResults = new List<QuestionResult>();
+    
+    [Header("Question Completion Tracking")]
+    public HashSet<int> completedQuestionIndices = new HashSet<int>();
 
     void Awake()
     {
@@ -41,13 +44,19 @@ public class GameStatsManager : MonoBehaviour
     }
 
     // Call this when a question is completed
-    public void RecordQuestionResult(string questionText, bool wasCorrect, int attemptsNeeded)
+    public void RecordQuestionResult(string questionText, bool wasCorrect, int attemptsNeeded, int questionIndex = -1)
     {
         totalQuestions++;
         
         if (wasCorrect)
         {
             correctAnswers++;
+            
+            // Mark question as completed if index is provided
+            if (questionIndex >= 0)
+            {
+                completedQuestionIndices.Add(questionIndex);
+            }
         }
         
         incorrectAttempts += (attemptsNeeded - 1); // Subtract 1 because the final attempt was correct
@@ -57,12 +66,41 @@ public class GameStatsManager : MonoBehaviour
         {
             questionText = questionText,
             wasCorrect = wasCorrect,
-            attemptsNeeded = attemptsNeeded
+            attemptsNeeded = attemptsNeeded,
+            questionIndex = questionIndex
         };
         questionResults.Add(result);
 
         Debug.Log($"Question completed: {wasCorrect} | Attempts: {attemptsNeeded}");
         Debug.Log($"Overall accuracy: {GetAttemptBasedAccuracy():F1}%");
+        
+        // Check if all questions are completed
+        CheckAllQuestionsCompleted();
+    }
+    
+    // Check if a specific question is completed
+    public bool IsQuestionCompleted(int questionIndex)
+    {
+        return completedQuestionIndices.Contains(questionIndex);
+    }
+    
+    // Check if all questions in the game are completed
+    public bool AreAllQuestionsCompleted()
+    {
+        return completedQuestionIndices.Count == 10;
+    }
+    
+    // Check and announce when all questions are completed
+    private void CheckAllQuestionsCompleted()
+    {
+        if (AreAllQuestionsCompleted())
+        {
+            Debug.Log("ALL QUESTIONS COMPLETED!");
+            DisplayFinalResults();
+            UIManager.Instance.ShowSummary();
+            // You could trigger end game screen here
+            // SceneManager.LoadScene("ResultsScene");
+        }
     }
 
     // Calculate overall accuracy percentage
@@ -80,17 +118,6 @@ public class GameStatsManager : MonoBehaviour
         return (correctAnswers / (float)totalAttempts) * 100f;
     }
 
-    // Get a letter grade based on accuracy
-    public string GetLetterGrade()
-    {
-        float accuracy = GetAccuracyPercentage();
-        if (accuracy >= 90) return "A";
-        if (accuracy >= 80) return "B";
-        if (accuracy >= 70) return "C";
-        if (accuracy >= 60) return "D";
-        return "F";
-    }
-
     // Reset all stats (call at start of new game)
     public void ResetStats()
     {
@@ -98,6 +125,7 @@ public class GameStatsManager : MonoBehaviour
         correctAnswers = 0;
         incorrectAttempts = 0;
         questionResults.Clear();
+        completedQuestionIndices.Clear();
         Debug.Log("Game stats reset");
     }
 
@@ -108,7 +136,6 @@ public class GameStatsManager : MonoBehaviour
         Debug.Log($"Questions Completed: {totalQuestions}");
         Debug.Log($"Correct Answers: {correctAnswers}");
         Debug.Log($"Accuracy: {GetAccuracyPercentage():F1}%");
-        Debug.Log($"Letter Grade: {GetLetterGrade()}");
     }
 }
 
@@ -118,4 +145,5 @@ public class QuestionResult
     public string questionText;
     public bool wasCorrect;
     public int attemptsNeeded;
+    public int questionIndex; // Track which question this was
 }

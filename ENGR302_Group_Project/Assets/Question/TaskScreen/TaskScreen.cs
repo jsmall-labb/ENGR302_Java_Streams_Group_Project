@@ -14,24 +14,23 @@ public class TaskScreen : MonoBehaviour
     private List<Button> buttons = new();   // List to hold buttons
 
     private List<string> answers = new();
-
     private List<string> allAnswers = new();
 
     private Text mainText;
     private Question question;
-
     private Action onComplete;
-
     private int incorrectAttempts = 0;
 
-    // Prefab runs this method and passes relevant question and action to complete when correct.
-    // _question is the displayed question.
-    // _onComplete is a lambda that gets run when correctly completed.
-    public void Execute(Question _question, Action _onComplete)
-    {
+    private int questionIndex = -1; // Track which question this is
 
+    // Updated Execute method to accept question index
+    public void Execute(Question _question, Action _onComplete, int _questionIndex = -1)
+    {
         onComplete = _onComplete;
         question = _question;
+        questionIndex = _questionIndex;
+        incorrectAttempts = 0;
+        
         ClearButtons();
 
         GameObject textObject = Instantiate(textPrefab, GetComponent<RectTransform>());
@@ -41,13 +40,10 @@ public class TaskScreen : MonoBehaviour
 
         mainText.text = Regex.Replace(mainText.text, "___", "<color=blue>___</color>");
 
-
         textObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 2, 20);
 
         CreateButtons();
-
     }
-
 
     private void ClearButtons()
     {
@@ -56,6 +52,11 @@ public class TaskScreen : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        
+        // Clear lists
+        answers.Clear();
+        allAnswers.Clear();
+        buttons.Clear();
     }
 
     void CreateButtons()
@@ -64,9 +65,7 @@ public class TaskScreen : MonoBehaviour
         allAnswers.AddRange(question.GetDecoyAnswer());
 
         System.Random rand = new();
-
         allAnswers = allAnswers.OrderBy(x => rand.Next()).ToList();
-
 
         for (int i = 0; i < allAnswers.Count; i++)
         {
@@ -81,15 +80,11 @@ public class TaskScreen : MonoBehaviour
             buttons.Add(newButton);
         }
 
-
-
         // Position the buttonPanel at the bottom-center of the canvas
         RectTransform panelRect = buttonPanel.GetComponent<RectTransform>();
         panelRect.anchorMin = new Vector2(0.5f, 0);   // Anchor to bottom-center of the canvas
         panelRect.anchorMax = new Vector2(0.5f, 0);   // Anchor to bottom-center of the canvas
         panelRect.pivot = new Vector2(0.5f, 0);       // Set pivot to center at the bottom
-        // panelRect.anchoredPosition = new Vector2(0, 50);  // Small offset above the bottom (optional)
-
 
         // Instantiate the button and get the necessary components
         Button complete_button = Instantiate(buttonPrefab, buttonPanel).GetComponent<Button>();
@@ -122,17 +117,20 @@ public class TaskScreen : MonoBehaviour
     {
         bool isCorrect = answers.Count == question.GetAnswer().Count && question.IsCorrect(answers);
 
-
-        if (answers.Count == question.GetAnswer().Count && question.IsCorrect(answers))
+        if (isCorrect)
         {
             Debug.Log("Correct");
             ClearButtons();
             mainText.text = question.GetCompletion();
+            
             int totalAttempts = incorrectAttempts + 1; // Adding 1 attempt for the correct attempt
+            
+            // Record the result with question index (no time tracking)
             GameStatsManager.Instance.RecordQuestionResult(
                 question.GetContext(),    // Question text
                 true,                     // Was correct
-                totalAttempts           // Total attempts needed
+                totalAttempts,           // Total attempts needed
+                questionIndex            // Question index for tracking completion
             );
 
             if (onComplete == null) { return; }
@@ -142,12 +140,14 @@ public class TaskScreen : MonoBehaviour
         {
             Debug.Log("Incorrect");
             incorrectAttempts++;
+            
+            // Optional: Provide visual feedback for wrong answer
+            Debug.Log($"Incorrect attempt #{incorrectAttempts}. Try again!");
         }
     }
 
     void ButtonClicked(int index, Button b)
     {
-
         string answerText = allAnswers[index];
         answerText = answerText.Substring(0, answerText.Length - 2);
 
@@ -188,6 +188,5 @@ public class TaskScreen : MonoBehaviour
             i.color = c;
             answers.Add(allAnswers[index]);
         }
-
     }
 }

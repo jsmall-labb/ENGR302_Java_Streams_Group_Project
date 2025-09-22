@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,36 +8,31 @@ public class UIManager : MonoBehaviour
     [Header("UI References")]
     public GameObject pauseCanvas;
     public GameObject questionCanvas;
+    public GameObject summaryCanvas;
+
+    [Header("Summary UI Texts")]
+    public TextMeshProUGUI accuracyText; // assign in Inspector
+    public TextMeshProUGUI timeText;     // assign in Inspector
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    public void ShowPauseMenu(bool show)
+    public void ShowSummary()
     {
-        if (pauseCanvas != null)
-            pauseCanvas.SetActive(show);
+        if (summaryCanvas != null)
+            summaryCanvas.SetActive(true);
 
-        if (show)
-            HideQuestion(); // auto-hide questions when pausing
-    }
+        if (accuracyText != null)
+        {
+            float accuracy = GameStatsManager.Instance.GetAccuracyPercentage();
+            accuracyText.text = $"Accuracy: {accuracy:F1}%";
+        }
 
-    public void ShowQuestion()
-    {
-        if (questionCanvas != null)
-            questionCanvas.SetActive(true);
-
-        if (pauseCanvas != null)
-            pauseCanvas.SetActive(false); // hide pause while question is up
-    }
-
-    public void HideQuestion()
-    {
-        if (questionCanvas != null)
-            questionCanvas.SetActive(false);
+        // timeText can still be handled by your TimerHUD script
+        if (questionCanvas != null) questionCanvas.SetActive(false);
+        if (pauseCanvas != null) pauseCanvas.SetActive(false);
     }
 }
