@@ -28,7 +28,7 @@ public class RoomButtonManager : MonoBehaviour
     void Start()
     {
         // Find RoomTeleporter if not assigned
-        if (roomTeleporter == null)
+        if (roomTeleporter == null) 
             roomTeleporter = FindObjectOfType<RoomTeleporter>();
 
         if (roomTeleporter == null)
