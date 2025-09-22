@@ -10,6 +10,7 @@ private int _id;
  private String _room;
  private String _context;
  private List<String> _answer;
+ private List<String> _decoyAnswer;
  private String _completion;
  private bool _isAnswered;
  
@@ -22,13 +23,15 @@ private int _id;
  /// <param name="context">Context or description of the question</param>
  /// <param name="answer">Correct answer to the question</param>
  /// <param name="completion">Completion status or additional completion info</param>
- public Question(int id, String  room, String context, List<String> answer, String completion)
+ public Question(int id, String  room, String context, List<String> answer, List<String> decoyAnswer, String completion)
  {
   _id = id;
  _room = room;
  _context = context;
  _answer = answer;
+        _decoyAnswer = decoyAnswer;
  _completion = completion;
+ 
  }
 
  /// <summary>
@@ -65,6 +68,10 @@ private int _id;
  public List<String> GetAnswer()
  {
   return _answer;
+ }
+ public List<String> GetDecoyAnswer()
+ {
+  return _decoyAnswer;
  }
 
  /// <summary>

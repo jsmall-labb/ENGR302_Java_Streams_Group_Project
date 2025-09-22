@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Text.RegularExpressions;
+using System.Linq;
 using System;
 
 public class TaskScreen : MonoBehaviour
@@ -13,6 +14,8 @@ public class TaskScreen : MonoBehaviour
     private List<Button> buttons = new();   // List to hold buttons
 
     private List<string> answers = new();
+
+    private List<string> allAnswers = new();
 
     private Text mainText;
     private Question question;
@@ -55,7 +58,7 @@ public class TaskScreen : MonoBehaviour
 
         textObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 2, 20);
 
-        CreateButtons(question.GetAnswer().Count);
+        CreateButtons();
 
     }
 
@@ -69,19 +72,27 @@ public class TaskScreen : MonoBehaviour
         }
     }
 
-    void CreateButtons(int buttonCount)
+    void CreateButtons()
     {
 
         // RectTransform rectTransform = buttonPanel.GetComponent<RectTransform>();
         // rectTransform.sizeDelta = new Vector2(Screen.width, rectTransform.sizeDelta.y);
         // rectTransform.position = new Vector3(0, Screen.height / 2);
 
-        for (int i = 0; i < buttonCount; i++)
+        allAnswers.AddRange(question.GetAnswer());
+        allAnswers.AddRange(question.GetDecoyAnswer());
+
+        System.Random rand = new();
+
+        allAnswers = allAnswers.OrderBy(x => rand.Next()).ToList();
+
+
+        for (int i = 0; i < allAnswers.Count ; i++)
         {
             // Create a new button from the prefab
             Button newButton = Instantiate(buttonPrefab, buttonPanel).GetComponent<Button>();
             Text bt = newButton.GetComponentInChildren<Text>();
-            bt.text = question.GetAnswer()[i]; // Set button text
+            bt.text = allAnswers[i]; // Set button text
             bt.fontSize = 20;
 
             int index = i;  // Capture the index to avoid closure issues
@@ -145,7 +156,7 @@ public class TaskScreen : MonoBehaviour
     void ButtonClicked(int index, Button b)
     {
 
-        string answerText = question.GetAnswer()[index];
+        string answerText = allAnswers[index];
         answerText = answerText.Substring(0, answerText.Length - 2);
 
         // Debug.Log("Button : " + answerText);
@@ -165,7 +176,7 @@ public class TaskScreen : MonoBehaviour
             Color c = i.color;
             c.a = 1f;
             i.color = c;
-            answers.Remove(question.GetAnswer()[index]);
+            answers.Remove(allAnswers[index]);
         }
         else
         {
@@ -183,7 +194,7 @@ public class TaskScreen : MonoBehaviour
             Color c = i.color;
             c.a = 0.25f;
             i.color = c;
-            answers.Add(question.GetAnswer()[index]);
+            answers.Add(allAnswers[index]);
         }
 
     }
