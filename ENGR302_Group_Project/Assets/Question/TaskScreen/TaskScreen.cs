@@ -22,6 +22,7 @@ public class TaskScreen : MonoBehaviour
 
     private Action onComplete;
 
+    private int incorrectAttempts = 0;
     // Needs to be removed for when called by prefab.
     // void Start()
     // {
@@ -127,18 +128,28 @@ public class TaskScreen : MonoBehaviour
 
     void checkComplete()
     {
-        
+        bool isCorrect = answers.Count == question.GetAnswer().Count && question.IsCorrect(answers);
+
+
         if (answers.Count == question.GetAnswer().Count && question.IsCorrect(answers))
         {
             Debug.Log("Correct");
             ClearButtons();
             mainText.text = question.GetCompletion();
+            int totalAttempts = incorrectAttempts + 1; // Adding 1 attempt for the correct attempt
+            GameStatsManager.Instance.RecordQuestionResult(
+                question.GetContext(),    // Question text
+                true,                     // Was correct
+                totalAttempts           // Total attempts needed
+            );
+
             if (onComplete == null) { return; }
             onComplete();
         }
         else
         {
             Debug.Log("Incorrect");
+            incorrectAttempts++;
         }
     }
 
