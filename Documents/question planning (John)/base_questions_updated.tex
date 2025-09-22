@@ -1,0 +1,600 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+ROOM
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+THEME
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+STREAM ELEMENT(s)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+STREAM DECOY(s)
+\end{minipage} \\
+\midrule
+\endhead
+Cockpit & Ship log corrupted & sorted & distinct, empty, toList \\
+Sensors & Scan environment (too much data) & Distinct, toList &
+findFirst, count, toArray \\
+Robot room & Get robots putting cargo away & map, collect & flatMap,
+filter, reduce \\
+Escape pod 1 & Escape pod missing, need to log & empty & findFirst,
+findAny, toList \\
+Escape pod 2 & Where could pod go in case needed after take off &
+filter, min & max, reduce, map \\
+Turret room & Prep and load ammo into turrets & map, forEach & filter,
+flatMap \\
+Shield generator & Overloaded, put cap on power pumped in & limit, max &
+min, count, distinct \\
+Life support & Make sure all tanks are full of oxygen & forEach,
+allMatch, filter, toList & anyMatch, limit, toArray, map \\
+Main reactor & Load in fresh reactor cores & flatMap, forEach & map,
+reduce, filter \\
+Med bay & Get how many med patches left & filter, count & distinct,
+reduce, findFirst \\
+Engine control & Get fuel flowing into each engine & forEach, filter,
+findFirst & findAny, map, count, distinct \\
+\bottomrule
+\end{longtable}
+
+All elements (to have in player inventory (no longer implemented)):
+
+sorted()
+
+distinct()
+
+map() * 2
+
+collect()
+
+empty()
+
+min()
+
+forEach() * 4
+
+limit()
+
+allMatch()
+
+filter() * 4
+
+flatMap()
+
+count()
+
+toList() * 2
+
+findFirst()
+
+max()
+
+Questions (in format of ROOM, text displayed (\_\_\_ is where option is
+inserted, all // \textbackslash\textbackslash{} text is just nice
+flavour), needed to insert, complete correct question (not all correct
+questions are exact functional java code presently, they are just trying
+to get the right idea across)):
+
+Cockpit
+
+Text:
+
+// RUNNING COCKPIT DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ERROR :: SHIPLOG CORRUPTED. EVENT TIMELINE DISORDERED. ::
+\textbackslash\textbackslash{}
+
+SHIPLOG = SHIPLOG.stream().\_\_\_;
+
+Answer:
+
+sorted()
+
+Complete text:
+
+// RUNNING COCKPIT DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ERROR :: SHIPLOG CORRUPTED. EVENT TIMELINE DISORDERED. ::
+\textbackslash\textbackslash{}
+
+SHIPLOG = SHIPLOG.stream().sorted();
+
+Sensors
+
+Text:
+
+// RUNNING SENSOR DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// SENSORS DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL.
+:: \textbackslash\textbackslash{}
+
+// LOADING SENSOR DATA\ldots{} \textbackslash\textbackslash{}
+
+// ERROR :: DATA SORTING FAILED. REPEATED ELEMENTS PRESENT. ::
+\textbackslash\textbackslash{}
+
+List\textless Object\textgreater{} allScanned =
+SENSORS.data.stream().\_\_\_.\_\_\_;
+
+Answer:
+
+distinct()
+
+toList()
+
+Completed text:
+
+// RUNNING SENSOR DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// SENSORS DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL.
+:: \textbackslash\textbackslash{}
+
+// LOADING SENSOR DATA\ldots{} \textbackslash\textbackslash{}
+
+// ERROR :: DATA SORTING FAILED. REPEATED ELEMENTS PRESENT. ::
+\textbackslash\textbackslash{}
+
+List\textless Object\textgreater{} allScanned =
+SENSORS.data.stream().distinct().toList();
+
+Robot room
+
+Text:
+
+// RUNNING DRONE DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// DRONE DIAGNOSTICS COMPLETE :: 11 OPERATIONAL. 4 DAMAGED. 5
+UNRESPONSIVE. :: STATUS :: SATISFACTORY. ::
+\textbackslash\textbackslash{}
+
+// SCANNING STORAGE BAYS\ldots{} SCANNING\ldots{}
+\textbackslash\textbackslash{}
+
+// SCAN COMPLETE :: 90\% CARGO PRESENT. 50\% UNSECURED. :: STATUS ::
+SUBOPTIMAL :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: BEGIN SORTING AND STORAGE PROCEDURES ::
+\textbackslash\textbackslash{}
+
+DRONES.newOrder(allCargo.\_\_\_(\_\_\_(cargo::cargoSize) -\textgreater{}
+boxes.getBox(cargoSize));
+
+Answer:
+
+map()
+
+collect()
+
+Completed text:
+
+// RUNNING DRONE DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// DRONE DIAGNOSTICS COMPLETE :: 11 OPERATIONAL. 4 DAMAGED. 5
+UNRESPONSIVE. :: STATUS :: SATISFACTORY. ::
+\textbackslash\textbackslash{}
+
+// SCANNING STORAGE BAYS\ldots{} SCANNING\ldots{}
+\textbackslash\textbackslash{}
+
+// SCAN COMPLETE :: 90\% CARGO PRESENT. 50\% UNSECURED. :: STATUS ::
+SUBOPTIMAL :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: BEGIN SORTING AND STORAGE PROCEDURES ::
+\textbackslash\textbackslash{}
+
+DRONES.newOrder(allCargo.map(collect(cargo::cargoSize) -\textgreater{}
+boxes.getBox(cargoSize));
+
+Escape pod 1
+
+Text:
+
+// RUNNING ESCAPE POD 1 DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ESCAPE POD 1 DIAGNOSTICS COMPLETE :: NO RESPONSE :: STATUS ::
+DISASTROUS. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: LOG ESCAPE POD 1 AS MISSING ::
+\textbackslash\textbackslash{}
+
+SHIP.manifest.escapePods.eP1 = Stream.\_\_\_;
+
+Answer:
+
+empty()
+
+Completed text:
+
+// RUNNING ESCAPE POD 1 DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ESCAPE POD 1 DIAGNOSTICS COMPLETE :: NO RESPONSE :: STATUS ::
+DISASTROUS. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: LOG ESCAPE POD 1 AS MISSING ::
+\textbackslash\textbackslash{}
+
+SHIP.manifest.escapePods.eP1 = Stream.empty();
+
+Escape pod 2
+
+Text:
+
+// RUNNING ESCAPE POD 2 DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ESCAPE POD 2 DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS ::
+IDEAL. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: PROGRAM NEW ESCAPE TARGET FOR EMERGENCY USE ::
+\textbackslash\textbackslash{}
+
+SHIP.ESCAPEPODS.eP2.destination =
+SENSORS.data.nearbyPlanets.stream().\_\_\_(planet::isHabitable).\_\_\_((p1,
+p2) -\textgreater{} p1.distance() - p2.distance()).get();
+
+Answer:
+
+filter()
+
+min()
+
+Completed text:
+
+// RUNNING ESCAPE POD 2 DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ESCAPE POD 2 DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS ::
+IDEAL. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: PROGRAM NEW ESCAPE TARGET FOR EMERGENCY USE ::
+\textbackslash\textbackslash{}
+
+SHIP.ESCAPEPODS.eP2.destination =
+SENSORS.data.nearbyPlanets.stream().filter(planet::isHabitable).min((p1,
+p2) -\textgreater{} p1.distance() - p2.distance()).get();
+
+Turret room
+
+Text:
+
+// RUNNING TURRET DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// TURRET DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. AMMUNITION DEPLETED
+:: STATUS :: GOOD. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: RELOAD TURRETS WITH CHARGED AMMUNITION ::
+\textbackslash\textbackslash{}
+
+Stream\textless chargedAmmo\textgreater{} chargedAmmo =
+SHIP.STORAGE.ammunition.stream().\_\_\_(ammo::charge);
+
+SHIP.TURRETS.stream().\_\_\_(this::reload(chargedAmmo));
+
+Answer:
+
+map()
+
+forEach()
+
+Completed text:
+
+// RUNNING TURRET DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// TURRET DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. AMMUNITION DEPLETED
+:: STATUS :: GOOD. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: RELOAD TURRETS WITH CHARGED AMMUNITION ::
+\textbackslash\textbackslash{}
+
+Stream\textless chargedAmmo\textgreater{} chargedAmmo =
+SHIP.STORAGE.ammunition.stream().map(ammo::charge);
+
+SHIP.TURRETS.stream().forEach(this::reload(chargedAmmo));
+
+Shield Generator
+
+Text:
+
+// RUNNING SHIELD GENERATOR DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// SHIELD GENERATOR DIAGNOSTICS COMPLETE :: OFFLINE. ENERGY SURGE. ::
+STATUS :: DISASTROUS. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: STOP FLOW OF EXCESS POWER IMMEDIATELY TO PREVENT
+DAMAGE AND CATASTROPHIC FAILURE. RETAIN MAXIMUM POWER TO PROTECT SHIP
+AND NOT DAMAGE SYSTEM. :: \textbackslash\textbackslash{}
+
+SHIP.SHIELDGENERATOR.powerFlow.stream().\_\_\_(SHIP.SHIELDGENERATOR.powerLevels.stream().\_\_\_);
+
+Answer:
+
+limit()
+
+max()
+
+Completed Answer:
+
+// RUNNING SHIELD GENERATOR DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// SHIELD GENERATOR DIAGNOSTICS COMPLETE :: OFFLINE. ENERGY SURGE. ::
+STATUS :: DISASTROUS. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: STOP FLOW OF EXCESS POWER IMMEDIATELY TO PREVENT
+DAMAGE AND CATASTROPHIC FAILURE. RETAIN MAXIMUM POWER TO PROTECT SHIP
+AND NOT DAMAGE SYSTEM.:: \textbackslash\textbackslash{}
+
+SHIP.SHIELDGENERATOR.powerFlow.stream().limit(SHIP.SHIELDGENERATOR
+.powerLevels.stream().max());
+
+Life support
+
+Text:
+
+// RUNNING LIFE SUPPORT DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING
+FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. ::
+\textbackslash\textbackslash{}
+
+// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE
+COMPROMISED :: \textbackslash\textbackslash{}
+
+SHIP.LIFESUPPORT.oxygenTanks.stream().\_\_\_( tank -\textgreater{} \{
+
+List\textless Gas\textgreater{} gasses = tank.gasses;
+
+if(gasses.stream.\_\_\_(oxygen))\{tank.pump();\}
+
+else\{gasses = gasses.stream.\_\_\_(g -\textgreater{} g.type ==
+oxygen).\_\_\_;\}
+
+\});
+
+Answer:
+
+forEach()
+
+allMatch()
+
+filter()
+
+toList()
+
+Completed text:
+
+// RUNNING LIFE SUPPORT DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING
+FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. ::
+\textbackslash\textbackslash{}
+
+// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE
+COMPROMISED :: \textbackslash\textbackslash{}
+
+SHIP.LIFESUPPORT.oxygenTanks.stream().forEach(tank -\textgreater{} \{
+
+List\textless Gas\textgreater{} gasses = tank.gasses;
+
+if(gasses.stream.allMatch(oxygen))\{tank.pump();\}
+
+else\{gasses = gasses.stream.filter(g -\textgreater{} g.type ==
+oxygen).toList();\}
+
+\});
+
+Main reactor
+
+Text (could also be split into 4 tasks to be completed together in a
+time limit):
+
+// RUNNING MAIN REACTOR DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// MAIN REACTOR DIAGNOSTICS COMPLETE :: REACTORS 1-4 FUNCTIONAL. REACTOR
+CORE RODS 1-4 DEPLETED. REACTOR CORE CASINGS 1-4 DETERIORATED. :: STATUS
+:: UNFAVOURABLE. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: FABRICATE NEW REACTOR CORES. REPLACE REACTOR CORES
+1-4. :: \textbackslash\textbackslash{}
+
+SHIP.MAINREACTOR.reactors.stream().\_\_\_(reactor -\textgreater{} \{
+
+reactor.replaceCore(SHIP.FABRICATOR.fabricateReactorCore(SHIP.STORAGE.reactorCargo.stream().\_\_\_(reactorCargo::getReactorCoreParts));
+
+// HINT: reactorCores are made with a stream of all components and
+subcomponents from the cargo
+
+\});
+
+Answer:
+
+forEach()
+
+flatMap()
+
+Completed text:
+
+// RUNNING MAIN REACTOR DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// MAIN REACTOR DIAGNOSTICS COMPLETE :: REACTORS 1-4 FUNCTIONAL. REACTOR
+CORE RODS 1-4 DEPLETED. REACTOR CORE CASINGS 1-4 DETERIORATED. :: STATUS
+:: UNFAVOURABLE. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: FABRICATE NEW REACTOR CORES. REPLACE REACTOR CORES
+1-4. :: \textbackslash\textbackslash{}
+
+SHIP.MAINREACTOR.reactors.stream().forEach(reactor -\textgreater{} \{
+
+reactor.replaceCore(SHIP.FABRICATOR.fabricateReactorCore(SHIP.STORAGE.reactorCargo.stream().flatMap(reactorCargo::getReactorCoreParts));
+
+// HINT: reactorCores are made with a stream of all components and
+subcomponents from the cargo
+
+\});
+
+Med bay
+
+Text:
+
+// RUNNING MEDICAL BAY DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ERROR :: CANNOT ASSESS REMAINING MEDICAL SUPPLIES. SCANNING CAPACITY
+PRESENTLY LIMITED. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: ONLY ASSESS NUMBER OF CRITICAL MED-PATCHES. ::
+\textbackslash\textbackslash{}
+
+int medPatchesLeft = SHIP.STORAGE.medicalSupplies.\_\_\_(medSupply
+-\textgreater{} medSupply.equals(medPatch)).\_\_\_;
+
+Answer:
+
+filter()
+
+count()
+
+Completed text:
+
+// RUNNING MEDICAL BAY DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ERROR :: CANNOT ASSESS REMAINING MEDICAL SUPPLIES. SCANNING CAPACITY
+PRESENTLY LIMITED. :: \textbackslash\textbackslash{}
+
+// RECOMMENDATION :: ONLY ASSESS NUMBER OF CRITICAL MED-PATCHES. ::
+\textbackslash\textbackslash{}
+
+int medPatchesLeft = SHIP.STORAGE.medicalSupplies.filter(medSupply
+-\textgreater{} medSupply.equals(medPatch)).count();
+
+Engine control
+
+Text:
+
+// RUNNING ENGINE DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ENGINE DIAGNOSTICS COMPLETE :: ENGINE 1 OFFLINE. ENGINE 2 ONLINE.
+ENGINE 3 OFFLINE. DAMAGE LIKELY. :: STATUS :: UNFAVOURABLE ::
+\textbackslash\textbackslash{}
+
+// RECOMMENDATION :: SEND FIRST AVAILABLE DRONE TO FIX DAMAGED ENGINES
+IMMEDIATELY. MISSION CRITICAL TASK. :: \textbackslash\textbackslash{}
+
+SHIP.ENGINES.stream().\_\_\_(!(engine::isOnline)).\_\_\_(engine
+-\textgreater{} \{
+
+DRONES.available().stream().\_\_\_().get().repair(engine);
+
+\});
+
+Answer:
+
+filter()
+
+forEach()
+
+findFirst()
+
+Completed text:
+
+// RUNNING ENGINE DIAGNOSTICS\ldots{} LOADING\ldots{}
+\textbackslash\textbackslash{}
+
+// ENGINE DIAGNOSTICS COMPLETE :: ENGINE 1 OFFLINE. ENGINE 2 ONLINE.
+ENGINE 3 OFFLINE. DAMAGE LIKELY. :: STATUS :: UNFAVOURABLE ::
+\textbackslash\textbackslash{}
+
+// RECOMMENDATION :: SEND FIRST AVAILABLE DRONE TO FIX DAMAGED ENGINES
+IMMEDIATELY. MISSION CRITICAL TASK. :: \textbackslash\textbackslash{}
+
+SHIP.ENGINES.stream().filter(!(engine::isOnline)).forEach(engine
+-\textgreater{} \{
+
+DRONES.available().stream().findFirst().get().repair(engine);
+
+\});
+
+\end{document}
