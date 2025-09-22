@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameStatsManager : MonoBehaviour
 {
@@ -22,13 +23,15 @@ public class GameStatsManager : MonoBehaviour
     public int totalQuestions = 0;
     public int correctAnswers = 0;
     public int incorrectAttempts = 0;
-    
+
     [Header("Individual Question Stats")]
     public List<QuestionResult> questionResults = new List<QuestionResult>();
 
+    [Header("Timing")]
+    public float elapsedTime = 0f; // seconds
+
     void Awake()
     {
-        // Ensure only one instance exists
         if (instance == null)
         {
             instance = this;
@@ -40,39 +43,33 @@ public class GameStatsManager : MonoBehaviour
         }
     }
 
-    // Call this when a question is completed
+    void Update()
+    {
+        // Update elapsed time continuously
+        if (Time.timeScale > 0f)
+            elapsedTime += Time.deltaTime;
+    }
+
     public void RecordQuestionResult(string questionText, bool wasCorrect, int attemptsNeeded)
     {
         totalQuestions++;
-        
-        if (wasCorrect)
-        {
-            correctAnswers++;
-        }
-        
-        incorrectAttempts += (attemptsNeeded - 1); // Subtract 1 because the final attempt was correct
+        if (wasCorrect) correctAnswers++;
+        incorrectAttempts += (attemptsNeeded - 1);
 
-        // Store individual question result
-        QuestionResult result = new QuestionResult
+        questionResults.Add(new QuestionResult
         {
             questionText = questionText,
             wasCorrect = wasCorrect,
             attemptsNeeded = attemptsNeeded
-        };
-        questionResults.Add(result);
-
-        Debug.Log($"Question completed: {wasCorrect} | Attempts: {attemptsNeeded}");
-        Debug.Log($"Overall accuracy: {GetAttemptBasedAccuracy():F1}%");
+        });
     }
 
-    // Calculate overall accuracy percentage
     public float GetAccuracyPercentage()
     {
         if (totalQuestions == 0) return 0f;
         return (correctAnswers / (float)totalQuestions) * 100f;
     }
 
-    // Calculate accuracy based on attempts (fewer attempts = better accuracy)
     public float GetAttemptBasedAccuracy()
     {
         if (totalQuestions == 0) return 0f;
@@ -80,7 +77,6 @@ public class GameStatsManager : MonoBehaviour
         return (correctAnswers / (float)totalAttempts) * 100f;
     }
 
-    // Get a letter grade based on accuracy
     public string GetLetterGrade()
     {
         float accuracy = GetAccuracyPercentage();
@@ -91,24 +87,30 @@ public class GameStatsManager : MonoBehaviour
         return "F";
     }
 
-    // Reset all stats (call at start of new game)
     public void ResetStats()
     {
         totalQuestions = 0;
         correctAnswers = 0;
         incorrectAttempts = 0;
         questionResults.Clear();
-        Debug.Log("Game stats reset");
+        elapsedTime = 0f;
     }
 
-    // Display final results
-    public void DisplayFinalResults()
+    // Method to pass summary to UI
+    public void FillSummaryUI(TextMeshProUGUI accuracyText, TextMeshProUGUI gradeText, TextMeshProUGUI timeText)
     {
-        Debug.Log("=== FINAL RESULTS ===");
-        Debug.Log($"Questions Completed: {totalQuestions}");
-        Debug.Log($"Correct Answers: {correctAnswers}");
-        Debug.Log($"Accuracy: {GetAccuracyPercentage():F1}%");
-        Debug.Log($"Letter Grade: {GetLetterGrade()}");
+        if (accuracyText != null)
+            accuracyText.text = $"Accuracy: {GetAccuracyPercentage():F1}%";
+
+        if (gradeText != null)
+            gradeText.text = $"Grade: {GetLetterGrade()}";
+
+        if (timeText != null)
+        {
+            int minutes = Mathf.FloorToInt(elapsedTime / 60f);
+            int seconds = Mathf.FloorToInt(elapsedTime % 60f);
+            timeText.text = $"Time: {minutes:00}:{seconds:00}";
+        }
     }
 }
 
