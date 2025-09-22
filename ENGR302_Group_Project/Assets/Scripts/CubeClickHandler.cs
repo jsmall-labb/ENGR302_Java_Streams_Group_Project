@@ -118,12 +118,16 @@ public class CubeClickHandler : MonoBehaviour
 
         // Before these lines other buttons need to be paused (including CubeClickHandler) to prevent unintended behaviour.
 
+        RoomTeleporter teleporter = FindFirstObjectByType<RoomTeleporter>();
+
         PauseInteraction();
+        teleporter.DisableTeleport();
 
         Action completionAction = () =>
         {
             Destroy(spawnedPrefab);
             ResumeInteraction();
+            teleporter.EnableTeleport();
         };
         spawnedPrefab.GetComponent<TaskScreen>().Execute(question, completionAction);
     }
