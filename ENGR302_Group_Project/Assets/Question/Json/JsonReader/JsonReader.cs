@@ -16,6 +16,7 @@ public class JSONQuestion
     public string room;
     public string text;
     public List<string> answer;
+    public List<string> decoy_answers;
     public string completed_text;
 }
 
@@ -41,13 +42,13 @@ public class JsonReader
         foreach (JSONQuestion jq in jsonLoadedQuestions.questions)
         {
 
-            List<string> answers = new();
-            foreach (string answer in jq.answer)
-            {
-                answers.Add(answer);
-            }
+            // List<string> answers = new();
+            // foreach (string answer in jq.answer)
+            // {
+            //     answers.Add(answer);
+            // }
 
-            returnQuestions.Add(new Question(currentID, jq.room, jq.text, answers, jq.completed_text));
+            returnQuestions.Add(new Question(currentID, jq.room, jq.text, jq.answer, jq.decoy_answers, jq.completed_text));
             currentID++;
         }
 
