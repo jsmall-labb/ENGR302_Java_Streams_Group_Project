@@ -16,7 +16,7 @@ public class SummaryDisplay : MonoBehaviour
     {
         if (GameStatsManager.Instance != null && accuracyText != null)
         {
-            float accuracy = GameStatsManager.Instance.GetAccuracyPercentage();
+            float accuracy = GameStatsManager.Instance.GetAttemptBasedAccuracy();
             accuracyText.text = $"{accuracy:F1}%";
         }
 
