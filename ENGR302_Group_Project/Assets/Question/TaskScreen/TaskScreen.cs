@@ -23,20 +23,6 @@ public class TaskScreen : MonoBehaviour
     private Action onComplete;
 
     private int incorrectAttempts = 0;
-    // Needs to be removed for when called by prefab.
-    // void Start()
-    // {
-    //     mainText = GetComponent<Text>();
-
-    //     // Generate buttons based on the specified number
-    //     // Question q = JsonReader.GetAllQuestions()[qindex];
-    //     JsonReader jr = new();
-    //     question = jr.GetAllQuestions()[7];
-
-    //     mainText.text = question.GetContext();
-    //     CreateButtons(question.GetAnswer().Count);
-    // }
-
 
     // Prefab runs this method and passes relevant question and action to complete when correct.
     // _question is the displayed question.
@@ -74,11 +60,6 @@ public class TaskScreen : MonoBehaviour
 
     void CreateButtons()
     {
-
-        // RectTransform rectTransform = buttonPanel.GetComponent<RectTransform>();
-        // rectTransform.sizeDelta = new Vector2(Screen.width, rectTransform.sizeDelta.y);
-        // rectTransform.position = new Vector3(0, Screen.height / 2);
-
         allAnswers.AddRange(question.GetAnswer());
         allAnswers.AddRange(question.GetDecoyAnswer());
 
@@ -115,7 +96,7 @@ public class TaskScreen : MonoBehaviour
         Text button_text = complete_button.GetComponentInChildren<Text>();
 
         // Set the button text and font size
-        button_text.text = "Submit";
+        button_text.text = "<color=red>Submit</color>";
         button_text.fontSize = 20;
         // Add listener to the button's onClick event
         complete_button.onClick.AddListener(() =>
@@ -126,7 +107,7 @@ public class TaskScreen : MonoBehaviour
 
         Button exit_button = Instantiate(buttonPrefab, buttonPanel).GetComponent<Button>();
         Text exit_text = exit_button.GetComponentInChildren<Text>();
-        exit_text.text = "Close";
+        exit_text.text = "<color=red>Close</color>";
         exit_text.fontSize = 20;
 
         exit_button.onClick.AddListener(() =>

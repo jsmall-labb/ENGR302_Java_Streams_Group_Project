@@ -10,12 +10,11 @@ public class Map
     
     private static QuestionPool _questionPool;
     //Dictionary of rooms with int (room number) and String (room name)
-    private static Dictionary<int, String> _roomNamesAndTaskNum = new Dictionary<int, String>
+    private static Dictionary<string, int> _roomNamesAndTaskNum = new Dictionary<string, int>
     {
-        {1, "Room 1"}, {1, "Room 2"}, {1, "Room 3"}, {1, "Room 4"}, {1, "Room 5"},
-        {1, "Room 6"}, {1, "Room 7"}, {1, "Room 8"}, {1, "Room 9"}, {1, "Room 10"}
+        {"Room 1", 1}, {"Room 2", 1}, {"Room 3", 1}, {"Room 4", 1}, {"Room 5", 1},
+        {"Room 6", 1}, {"Room 7", 1}, {"Room 8", 1}, {"Room 9", 1}, {"Room 10", 1}
     };
-
     /// <summary>
     /// Initializes the question pool and room list.
     /// </summary>
@@ -36,8 +35,8 @@ public class Map
         
         foreach (var task in _roomNamesAndTaskNum)
         {
-            Room_Question room = new Room_Question(task.Value, task.Key, _questionPool);
-            _roomDictionary.Add(task.Value, room);;
+            Room_Question room = new Room_Question(task.Key, task.Value, _questionPool);
+            _roomDictionary.Add(task.Key, room);
         }
         
     }

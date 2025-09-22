@@ -41,13 +41,6 @@ public class JsonReader
 
         foreach (JSONQuestion jq in jsonLoadedQuestions.questions)
         {
-
-            // List<string> answers = new();
-            // foreach (string answer in jq.answer)
-            // {
-            //     answers.Add(answer);
-            // }
-
             returnQuestions.Add(new Question(currentID, jq.room, jq.text, jq.answer, jq.decoy_answers, jq.completed_text));
             currentID++;
         }

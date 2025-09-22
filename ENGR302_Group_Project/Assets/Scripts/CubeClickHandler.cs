@@ -100,25 +100,17 @@ public class CubeClickHandler : MonoBehaviour
         Debug.Log($"Prefab spawned by cube '{gameObject.name}' at position {spawnPosition}");
 
 
-        // Replace the three lines below to use MapManager in order to get the correct question per room rather than the same.
-        JsonReader jr = new();
         Question question;
+        RoomTeleporter teleporter = FindFirstObjectByType<RoomTeleporter>();
+        MapManager mapManager = MapManager.Instance;
+        Map map = mapManager.GetMap();
 
         RoomButtonManager roomButtonManager = FindFirstObjectByType<RoomButtonManager>();
-        if (roomButtonManager != null)
-        {
-            question = jr.GetAllQuestions()[roomButtonManager.GetCurrentRoomIndex()];
-        }
-        else
-        {
-            int index = UnityEngine.Random.Range(0, jr.GetAllQuestions().Count);
-            question = jr.GetAllQuestions()[index];
-        }
-
-
-        // Before these lines other buttons need to be paused (including CubeClickHandler) to prevent unintended behaviour.
-
-        RoomTeleporter teleporter = FindFirstObjectByType<RoomTeleporter>();
+        question = map.GetRoom($"Room {roomButtonManager.GetCurrentRoomIndex() + 1}").GetQuestion(0);
+        if (roomButtonManager == null) Debug.LogError("Room Button Manager is null");
+        if (teleporter == null) Debug.LogError("Teleporter is null");
+        if (mapManager == null) Debug.LogError("MapManager is null");
+ 
 
         PauseInteraction();
         teleporter.DisableTeleport();
