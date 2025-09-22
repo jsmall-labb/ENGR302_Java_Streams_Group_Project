@@ -990,13 +990,14 @@ GameObject:
   - component: {fileID: 392159667}
   - component: {fileID: 392159666}
   - component: {fileID: 392159670}
+  - component: {fileID: 392159671}
   m_Layer: 5
   m_Name: Summary Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &392159666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,7 +1080,7 @@ RectTransform:
   - {fileID: 1716908055}
   - {fileID: 904706488}
   - {fileID: 1984205054}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 527353992}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1100,6 +1101,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accuracyText: {fileID: 530822645}
   timeText: {fileID: 2081098057}
+--- !u!114 &392159671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392159665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6da3559d049cda4a8eb86c66c80f2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://docs.google.com/forms/d/e/1FAIpQLSf-lTboba-RxY1BlckH6WXWLMvuHGZX8TszZMITbruvjj1V1A/viewform?usp=sharing&ouid=114197202088013331987
 --- !u!1 &401723075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,6 +1577,7 @@ Transform:
   - {fileID: 921997473}
   - {fileID: 651632392}
   - {fileID: 1738608631}
+  - {fileID: 392159669}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &530822643
@@ -6071,7 +6086,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 392159671}
         m_TargetAssemblyTypeName: OpenSurveyLink, Assembly-CSharp
         m_MethodName: OpenLink
         m_Mode: 1
@@ -6362,4 +6377,3 @@ SceneRoots:
   - {fileID: 527353992}
   - {fileID: 1494534598}
   - {fileID: 1219569693}
-  - {fileID: 392159669}
