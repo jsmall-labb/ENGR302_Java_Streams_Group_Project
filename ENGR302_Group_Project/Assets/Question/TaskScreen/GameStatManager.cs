@@ -97,6 +97,7 @@ public class GameStatsManager : MonoBehaviour
         {
             Debug.Log("ALL QUESTIONS COMPLETED!");
             DisplayFinalResults();
+            UIManager.Instance.ShowSummary();
             // You could trigger end game screen here
             // SceneManager.LoadScene("ResultsScene");
         }
