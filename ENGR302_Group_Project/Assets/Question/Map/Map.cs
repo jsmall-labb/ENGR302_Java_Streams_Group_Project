@@ -12,8 +12,8 @@ public class Map
     //Dictionary of rooms with int (room number) and String (room name)
     private static Dictionary<int, String> _roomNamesAndTaskNum = new Dictionary<int, String>
     {
-        {1, "Room 1"}, {2, "Room 2"}, {3, "Room 3"}, {4, "Room 4"}, {5, "Room 5"},
-        {6, "Room 6"}, {7, "Room 7"}, {8, "Room 8"}, {9, "Room 9"}, {10, "Room 10"}
+        {1, "Room 1"}, {1, "Room 2"}, {1, "Room 3"}, {1, "Room 4"}, {1, "Room 5"},
+        {1, "Room 6"}, {1, "Room 7"}, {1, "Room 8"}, {1, "Room 9"}, {1, "Room 10"}
     };
 
     /// <summary>
