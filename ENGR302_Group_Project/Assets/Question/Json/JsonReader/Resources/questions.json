@@ -4,67 +4,78 @@
             "room": "Cockpit",
             "text": "// RUNNING COCKPIT DIAGNOSTICS… LOADING… \\ \n// ERROR :: SHIPLOG CORRUPTED. EVENT TIMELINE DISORDERED. :: \\ \n\nSHIPLOG = SHIPLOG.stream().___(); ",
             "answer": ["sorted()"],
-            "completed_text": "// RUNNING COCKPIT DIAGNOSTICS… LOADING… \\ \n// ERROR :: SHIPLOG CORRUPTED. EVENT TIMELINE DISORDERED. :: \\ \n\nSHIPLOG = SHIPLOG.stream().sorted();"
+            "completed_text": "// RUNNING COCKPIT DIAGNOSTICS… LOADING… \\ \n// ERROR :: SHIPLOG CORRUPTED. EVENT TIMELINE DISORDERED. :: \\ \n\nSHIPLOG = SHIPLOG.stream().sorted();",
+            "decoy_answers": ["distinct()", "empty()", "toList()"]
         },
         {
             "room": "Sensors",
             "text": "// RUNNING SENSOR DIAGNOSTICS… LOADING… \\ \n// SENSORS DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// LOADING SENSOR DATA… \\ \n// ERROR :: DATA SORTING FAILED. REPEATED ELEMENTS PRESENT. :: \\ \n\nList<Object> allScanned = SENSORS.data.stream().___().___(); ",
             "answer": ["distinct()", "toList()"],
-            "completed_text": "// RUNNING SENSOR DIAGNOSTICS… LOADING… \\ \n// SENSORS DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// LOADING SENSOR DATA… \\ \n// ERROR :: DATA SORTING FAILED. REPEATED ELEMENTS PRESENT. :: \\ \n\nList<Object> allScanned = SENSORS.data.stream().distinct().toList();"
+            "completed_text": "// RUNNING SENSOR DIAGNOSTICS… LOADING… \\ \n// SENSORS DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// LOADING SENSOR DATA… \\ \n// ERROR :: DATA SORTING FAILED. REPEATED ELEMENTS PRESENT. :: \\ \n\nList<Object> allScanned = SENSORS.data.stream().distinct().toList();",
+            "decoy_answers" : ["findFirst()", "count()", "toArray()"]
         },
         {
             "room": "Robot room",
             "text": "// RUNNING DRONE DIAGNOSTICS… LOADING… \\ \n// DRONE DIAGNOSTICS COMPLETE :: 11 OPERATIONAL. 4 DAMAGED. 5 UNRESPONSIVE. :: STATUS :: SATISFACTORY. :: \\ \n// SCANNING STORAGE BAYS… SCANNING… \\ \n// SCAN COMPLETE :: 90% CARGO PRESENT. 50% UNSECURED. :: STATUS :: SUBOPTIMAL :: \\ \n// RECOMMENDATION :: BEGIN SORTING AND STORAGE PROCEDURES :: \\ \n\nDRONES.newOrder(allCargo.___(___(cargo::cargoSize) -> boxes.getBox(cargoSize)); ",
             "answer": ["map()", "collect()"],
-            "completed_text": "// RUNNING DRONE DIAGNOSTICS… LOADING… \\ \n// DRONE DIAGNOSTICS COMPLETE :: 11 OPERATIONAL. 4 DAMAGED. 5 UNRESPONSIVE. :: STATUS :: SATISFACTORY. :: \\ \n// SCANNING STORAGE BAYS… SCANNING… \\ \n// SCAN COMPLETE :: 90% CARGO PRESENT. 50% UNSECURED. :: STATUS :: SUBOPTIMAL :: \\ \n// RECOMMENDATION :: BEGIN SORTING AND STORAGE PROCEDURES :: \\ \n\nDRONES.newOrder(allCargo.map(collect(cargo::cargoSize) -> boxes.getBox(cargoSize));"
+            "completed_text": "// RUNNING DRONE DIAGNOSTICS… LOADING… \\ \n// DRONE DIAGNOSTICS COMPLETE :: 11 OPERATIONAL. 4 DAMAGED. 5 UNRESPONSIVE. :: STATUS :: SATISFACTORY. :: \\ \n// SCANNING STORAGE BAYS… SCANNING… \\ \n// SCAN COMPLETE :: 90% CARGO PRESENT. 50% UNSECURED. :: STATUS :: SUBOPTIMAL :: \\ \n// RECOMMENDATION :: BEGIN SORTING AND STORAGE PROCEDURES :: \\ \n\nDRONES.newOrder(allCargo.map(collect(cargo::cargoSize) -> boxes.getBox(cargoSize));",
+            "decoy_answers" : ["flatMap()", "filter()", "reduce()"]
         },
         {
             "room": "Escape pod 1",
             "text": "// RUNNING ESCAPE POD 1 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 1 DIAGNOSTICS COMPLETE :: NO RESPONSE :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: LOG ESCAPE POD 1 AS MISSING :: \\ \n\nSHIP.manifest.escapePods.eP1 = Stream.___(); ",
             "answer": ["empty()"],
-            "completed_text": "// RUNNING ESCAPE POD 1 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 1 DIAGNOSTICS COMPLETE :: NO RESPONSE :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: LOG ESCAPE POD 1 AS MISSING :: \\ \n\nSHIP.manifest.escapePods.eP1 = Stream.empty();"
+            "completed_text": "// RUNNING ESCAPE POD 1 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 1 DIAGNOSTICS COMPLETE :: NO RESPONSE :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: LOG ESCAPE POD 1 AS MISSING :: \\ \n\nSHIP.manifest.escapePods.eP1 = Stream.empty();",
+            "decoy_answers" : ["findFirst()", "findAny()", "toList()"]
         },
         {
             "room": "Escape pod 2",
             "text": "// RUNNING ESCAPE POD 2 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 2 DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// RECOMMENDATION :: PROGRAM NEW ESCAPE TARGET FOR EMERGENCY USE :: \\ \n\nSHIP.ESCAPEPODS.eP2.destination = SENSORS.data.nearbyPlanets.stream().___(planet::isHabitable).___((p1, p2) -> p1.distance() - p2.distance()).get(); ",
             "answer": ["filter()", "min()"],
-            "completed_text": "// RUNNING ESCAPE POD 2 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 2 DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// RECOMMENDATION :: PROGRAM NEW ESCAPE TARGET FOR EMERGENCY USE :: \\ \n\nSHIP.ESCAPEPODS.eP2.destination = SENSORS.data.nearbyPlanets.stream().filter(planet::isHabitable).min((p1, p2) -> p1.distance() - p2.distance()).get();"
+            "completed_text": "// RUNNING ESCAPE POD 2 DIAGNOSTICS… LOADING… \\ \n// ESCAPE POD 2 DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. :: STATUS :: IDEAL. :: \\ \n// RECOMMENDATION :: PROGRAM NEW ESCAPE TARGET FOR EMERGENCY USE :: \\ \n\nSHIP.ESCAPEPODS.eP2.destination = SENSORS.data.nearbyPlanets.stream().filter(planet::isHabitable).min((p1, p2) -> p1.distance() - p2.distance()).get();",
+            "decoy_answers" : ["max()", "reduce()", "map()"]
         },
         {
             "room": "Turret room",
             "text": "// RUNNING TURRET DIAGNOSTICS… LOADING… \\ \n// TURRET DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. AMMUNITION DEPLETED :: STATUS :: GOOD. :: \\ \n// RECOMMENDATION :: RELOAD TURRETS WITH CHARGED AMMUNITION :: \\ \n\nStream<chargedAmmo> chargedAmmo = SHIP.STORAGE.ammunition.stream().___(ammo::charge); \nSHIP.TURRETS.stream().___(this::reload(chargedAmmo)); ",
             "answer": ["map()", "forEach()"],
-            "completed_text": "// RUNNING TURRET DIAGNOSTICS… LOADING… \\ \n// TURRET DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. AMMUNITION DEPLETED :: STATUS :: GOOD. :: \\ \n// RECOMMENDATION :: RELOAD TURRETS WITH CHARGED AMMUNITION :: \\ \n\nStream<chargedAmmo> chargedAmmo = SHIP.STORAGE.ammunition.stream().map(ammo::charge); \nSHIP.TURRETS.stream().forEach(this::reload(chargedAmmo));"
+            "completed_text": "// RUNNING TURRET DIAGNOSTICS… LOADING… \\ \n// TURRET DIAGNOSTICS COMPLETE :: FULLY FUNCTIONAL. AMMUNITION DEPLETED :: STATUS :: GOOD. :: \\ \n// RECOMMENDATION :: RELOAD TURRETS WITH CHARGED AMMUNITION :: \\ \n\nStream<chargedAmmo> chargedAmmo = SHIP.STORAGE.ammunition.stream().map(ammo::charge); \nSHIP.TURRETS.stream().forEach(this::reload(chargedAmmo));",
+            "decoy_answers" : ["filter()", "flatMap()"]
         },
         {
             "room": "Shield Generator",
             "text": "// RUNNING SHIELD GENERATOR DIAGNOSTICS… LOADING… \\ \n// SHIELD GENERATOR DIAGNOSTICS COMPLETE :: OFFLINE. ENERGY SURGE. :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: STOP FLOW OF EXCESS POWER IMMEDIATELY TO PREVENT DAMAGE AND CATASTROPHIC FAILURE. RETAIN MAXIMUM POWER TO PROTECT SHIP AND NOT DAMAGE SYSTEM. :: \\ \n\nSHIP.SHIELDGENERATOR.powerFlow.stream().___(SHIP.SHIELDGENERATOR.powerLevels.stream().___()); ",
             "answer": ["limit()", "max()"],
-            "completed_text": "// RUNNING SHIELD GENERATOR DIAGNOSTICS… LOADING… \\ \n// SHIELD GENERATOR DIAGNOSTICS COMPLETE :: OFFLINE. ENERGY SURGE. :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: STOP FLOW OF EXCESS POWER IMMEDIATELY TO PREVENT DAMAGE AND CATASTROPHIC FAILURE. RETAIN MAXIMUM POWER TO PROTECT SHIP AND NOT DAMAGE SYSTEM. :: \\ \n\nSHIP.SHIELDGENERATOR.powerFlow.stream().limit(SHIP.SHIELDGENERATOR .powerLevels.stream().max());"
+            "completed_text": "// RUNNING SHIELD GENERATOR DIAGNOSTICS… LOADING… \\ \n// SHIELD GENERATOR DIAGNOSTICS COMPLETE :: OFFLINE. ENERGY SURGE. :: STATUS :: DISASTROUS. :: \\ \n// RECOMMENDATION :: STOP FLOW OF EXCESS POWER IMMEDIATELY TO PREVENT DAMAGE AND CATASTROPHIC FAILURE. RETAIN MAXIMUM POWER TO PROTECT SHIP AND NOT DAMAGE SYSTEM. :: \\ \n\nSHIP.SHIELDGENERATOR.powerFlow.stream().limit(SHIP.SHIELDGENERATOR .powerLevels.stream().max());",
+            "decoy_answers" : ["min()", "count()", "distinct()"]
         },
         {
             "room": "Life support",
             "text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().___( tank -> { \n\tList<Gas> gasses = tank.gasses; \n\tif(gasses.stream.___(oxygen)){tank.pump();} \n\telse{gasses = gasses.stream.___(g -> g.type == oxygen).___();} \n}); ",
             "answer": ["forEach()", "allMatch()", "filter()", "toList()"],
-            "completed_text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().forEach(tank -> { \n\tList<Gas> gasses = tank.gasses; \n\tif(gasses.stream.allMatch(oxygen)){tank.pump();} \n\telse{gasses = gasses.stream.filter(g -> g.type == oxygen).toList();} \n});"
+            "completed_text": "// RUNNING LIFE SUPPORT DIAGNOSTICS… LOADING… \\ \n// LIFE SUPPORT DIAGNOSTICS COMPLETE :: PARTIALLY FUNCTIONAL. PUMPING FUNCTIONAL. STORAGE TANKS COMPROMISED :: STATUS :: SUBOPTIMAL. :: \\ \n// RECOMMENDATION :: CHECK ALL TANKS AND CLEAN OUT ANY THAT ARE COMPROMISED :: \\ \n\nSHIP.LIFESUPPORT.oxygenTanks.stream().forEach(tank -> { \n\tList<Gas> gasses = tank.gasses; \n\tif(gasses.stream.allMatch(oxygen)){tank.pump();} \n\telse{gasses = gasses.stream.filter(g -> g.type == oxygen).toList();} \n});",
+            "decoy_answers" : ["anyMatch()", "limit()", "toArray()", "map()"]
         },
         {
             "room": "Main reactor",
-            "text": "// RUNNING MAIN REACTOR DIAGNOSTICS… LOADING… \\ \n// MAIN REACTOR DIAGNOSTICS COMPLETE :: REACTORS 1-4 FUNCTIONAL. REACTOR CORE RODS 1-4 DEPLETED. REACTOR CORE CASINGS 1-4 DETERIORATED. :: STATUS :: UNFAVOURABLE. :: \\ \n// RECOMMENDATION :: FABRICATE NEW REACTOR CORES. REPLACE REACTOR CORES 1-4. :: \\ \n\nSHIP.MAINREACTOR.reactors.stream().___(reactor -> { \nreactor.replaceCore(SHIP.FABRICATOR.fabricateReactorCore(SHIP.STORAGE.reactorCargo.stream().___(reactorCargo::getReactorCoreParts)); \n}); ",
+            "text": "// RUNNING MAIN REACTOR DIAGNOSTICS… LOADING… \\ \n// MAIN REACTOR DIAGNOSTICS COMPLETE :: REACTORS 1-4 FUNCTIONAL. REACTOR CORE RODS 1-4 DEPLETED. REACTOR CORE CASINGS 1-4 DETERIORATED. :: STATUS :: UNFAVOURABLE. :: \\ \n// RECOMMENDATION :: FABRICATE NEW REACTOR CORES. REPLACE REACTOR CORES 1-4. :: \\ \n\nSHIP.MAINREACTOR.reactors.stream().___(reactor -> { \n\treactor.replaceCore(SHIP.FABRICATOR.fabricateReactorCore(SHIP.STORAGE.reactorCargo.stream().___(reactorCargo::getReactorCoreParts)); \n}); ",
             "answer": ["forEach()", "flatMap()"],
-            "completed_text": "// RUNNING MAIN REACTOR DIAGNOSTICS… LOADING… \\ \n// MAIN REACTOR DIAGNOSTICS COMPLETE :: REACTORS 1-4 FUNCTIONAL. REACTOR CORE RODS 1-4 DEPLETED. REACTOR CORE CASINGS 1-4 DETERIORATED. :: STATUS :: UNFAVOURABLE. :: \\ \n// RECOMMENDATION :: FABRICATE NEW REACTOR CORES. REPLACE REACTOR CORES 1-4. :: \\ \n\nSHIP.MAINREACTOR.reactors.stream().forEach(reactor -> { \nreactor.replaceCore(SHIP.FABRICATOR.fabricateReactorCore(SHIP.STORAGE.reactorCargo.stream().flatMap(reactorCargo::getReactorCoreParts)); \n});"
+            "completed_text": "// RUNNING MAIN REACTOR DIAGNOSTICS… LOADING… \\ \n// MAIN REACTOR DIAGNOSTICS COMPLETE :: REACTORS 1-4 FUNCTIONAL. REACTOR CORE RODS 1-4 DEPLETED. REACTOR CORE CASINGS 1-4 DETERIORATED. :: STATUS :: UNFAVOURABLE. :: \\ \n// RECOMMENDATION :: FABRICATE NEW REACTOR CORES. REPLACE REACTOR CORES 1-4. :: \\ \n\nSHIP.MAINREACTOR.reactors.stream().forEach(reactor -> { \n\treactor.replaceCore(SHIP.FABRICATOR.fabricateReactorCore(SHIP.STORAGE.reactorCargo.stream().flatMap(reactorCargo::getReactorCoreParts)); \n});",
+            "decoy_answers" : ["map()", "reduce()", "filter()"]
         },
         {
             "room": "Med bay",
             "text": "// RUNNING MEDICAL BAY DIAGNOSTICS… LOADING… \\ \n// ERROR :: CANNOT ASSESS REMAINING MEDICAL SUPPLIES. SCANNING CAPACITY PRESENTLY LIMITED. :: \\ \n// RECOMMENDATION :: ONLY ASSESS NUMBER OF CRITICAL MED-PATCHES. :: \\ \n\nint medPatchesLeft = SHIP.STORAGE.medicalSupplies.___(medSupply -> medSupply.equals(medPatch)).___(); ",
             "answer": ["filter()", "count()"],
-            "completed_text": "// RUNNING MEDICAL BAY DIAGNOSTICS… LOADING… \\ \n// ERROR :: CANNOT ASSESS REMAINING MEDICAL SUPPLIES. SCANNING CAPACITY PRESENTLY LIMITED. :: \\ \n// RECOMMENDATION :: ONLY ASSESS NUMBER OF CRITICAL MED-PATCHES. :: \\ \n\nint medPatchesLeft = SHIP.STORAGE.medicalSupplies.filter(medSupply -> medSupply.equals(medPatch)).count();"
+            "completed_text": "// RUNNING MEDICAL BAY DIAGNOSTICS… LOADING… \\ \n// ERROR :: CANNOT ASSESS REMAINING MEDICAL SUPPLIES. SCANNING CAPACITY PRESENTLY LIMITED. :: \\ \n// RECOMMENDATION :: ONLY ASSESS NUMBER OF CRITICAL MED-PATCHES. :: \\ \n\nint medPatchesLeft = SHIP.STORAGE.medicalSupplies.filter(medSupply -> medSupply.equals(medPatch)).count();",
+            "decoy_answers" : ["distinct()", "reduce()", "findFirst()"]
         },
         {
             "room": "Engine control",
             "text": "// RUNNING ENGINE DIAGNOSTICS… LOADING… \\ \n// ENGINE DIAGNOSTICS COMPLETE :: ENGINE 1 OFFLINE. ENGINE 2 ONLINE. ENGINE 3 OFFLINE. DAMAGE LIKELY. :: STATUS :: UNFAVOURABLE :: \\ \n// RECOMMENDATION :: SEND FIRST AVAILABLE DRONE TO FIX DAMAGED ENGINES IMMEDIATELY. MISSION CRITICAL TASK. :: \\ \n\nSHIP.ENGINES.stream().___(!(engine::isOnline)).___(engine -> { \nDRONES.available().stream().___().get().repair(engine); \n}); ",
             "answer": ["filter()", "forEach()", "findFirst()"],
-            "completed_text": "// RUNNING ENGINE DIAGNOSTICS… LOADING… \\ \n// ENGINE DIAGNOSTICS COMPLETE :: ENGINE 1 OFFLINE. ENGINE 2 ONLINE. ENGINE 3 OFFLINE. DAMAGE LIKELY. :: STATUS :: UNFAVOURABLE :: \\ \n// RECOMMENDATION :: SEND FIRST AVAILABLE DRONE TO FIX DAMAGED ENGINES IMMEDIATELY. MISSION CRITICAL TASK. :: \\ \n\nSHIP.ENGINES.stream().filter(!(engine::isOnline)).forEach(engine -> { \nDRONES.available().stream().findFirst().get().repair(engine); \n});"
+            "completed_text": "// RUNNING ENGINE DIAGNOSTICS… LOADING… \\ \n// ENGINE DIAGNOSTICS COMPLETE :: ENGINE 1 OFFLINE. ENGINE 2 ONLINE. ENGINE 3 OFFLINE. DAMAGE LIKELY. :: STATUS :: UNFAVOURABLE :: \\ \n// RECOMMENDATION :: SEND FIRST AVAILABLE DRONE TO FIX DAMAGED ENGINES IMMEDIATELY. MISSION CRITICAL TASK. :: \\ \n\nSHIP.ENGINES.stream().filter(!(engine::isOnline)).forEach(engine -> { \nDRONES.available().stream().findFirst().get().repair(engine); \n});",
+            "decoy_answers" : ["findAny()", "map()", "count()", "distinct()"]
         }
     ]
 }
