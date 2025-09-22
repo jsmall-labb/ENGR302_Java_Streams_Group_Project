@@ -129,6 +129,7 @@ public class CubeClickHandler : MonoBehaviour
             ResumeInteraction();
             teleporter.EnableTeleport();
         };
+
         spawnedPrefab.GetComponent<TaskScreen>().Execute(question, completionAction);
     }
     

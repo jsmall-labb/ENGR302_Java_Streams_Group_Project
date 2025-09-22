@@ -87,7 +87,7 @@ public class TaskScreen : MonoBehaviour
         allAnswers = allAnswers.OrderBy(x => rand.Next()).ToList();
 
 
-        for (int i = 0; i < allAnswers.Count ; i++)
+        for (int i = 0; i < allAnswers.Count; i++)
         {
             // Create a new button from the prefab
             Button newButton = Instantiate(buttonPrefab, buttonPanel).GetComponent<Button>();
@@ -113,16 +113,27 @@ public class TaskScreen : MonoBehaviour
         // Instantiate the button and get the necessary components
         Button complete_button = Instantiate(buttonPrefab, buttonPanel).GetComponent<Button>();
         Text button_text = complete_button.GetComponentInChildren<Text>();
-        
+
         // Set the button text and font size
         button_text.text = "Submit";
         button_text.fontSize = 20;
-
         // Add listener to the button's onClick event
         complete_button.onClick.AddListener(() =>
         {
             checkComplete();
         });
+
+
+        Button exit_button = Instantiate(buttonPrefab, buttonPanel).GetComponent<Button>();
+        Text exit_text = exit_button.GetComponentInChildren<Text>();
+        exit_text.text = "Close";
+        exit_text.fontSize = 20;
+
+        exit_button.onClick.AddListener(() =>
+        {
+            onComplete();
+        });
+
 
     }
 
