@@ -87,7 +87,8 @@ public class GameStatsManager : MonoBehaviour
     // Check if all questions in the game are completed
     public bool AreAllQuestionsCompleted()
     {
-        return completedQuestionIndices.Count == 10;
+        return completedQuestionIndices.Count == 4;
+        // return true;
     }
     
     // Check and announce when all questions are completed
