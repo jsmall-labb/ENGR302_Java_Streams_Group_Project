@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 [System.Serializable]
 public class QuestionPool
 {
-    private static Dictionary<int, Question> _questions;
+    private static Dictionary<int, Question> _questions = new();
     private static JsonReader _jsonReader = new JsonReader();
     
     public QuestionPool() {}
@@ -34,10 +35,15 @@ public class QuestionPool
             return null;
             
         }
-        var random = new Random();
-        var randomIndex = random.Next(0, _questions.Count);
-        var question = _questions[randomIndex];
-        _questions.Remove(randomIndex);
+ 
+        var keys = new List<int>(_questions.Keys);
+        Random rand = new Random();
+
+        int index = keys[rand.Next(keys.Count)];
+
+        Question question = _questions[index];
+
+        _questions.Remove(index);
         return question;
     }
 }

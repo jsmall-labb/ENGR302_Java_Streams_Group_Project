@@ -159,20 +159,35 @@ public class CubeClickHandler : MonoBehaviour
 
         Debug.Log($"Prefab spawned by cube '{gameObject.name}' at position {spawnPosition}");
 
-        // Get the correct question for THIS specific cube
-        Question question = QuestionDatabase.All[assignedQuestionIndex];
 
-        Debug.Log($"Cube {gameObject.name} opening question {assignedQuestionIndex}: {question.GetContext()}");
+
+
+        Question question;
+        RoomTeleporter teleporter = FindFirstObjectByType<RoomTeleporter>();
+        MapManager mapManager = MapManager.Instance;
+        Map map = mapManager.GetMap();
+
+        RoomButtonManager roomButtonManager = FindFirstObjectByType<RoomButtonManager>();
+        question = map.GetRoom($"Room {roomButtonManager.GetCurrentRoomIndex() + 1}").GetQuestion(0);
+        if (roomButtonManager == null) Debug.LogError("Room Button Manager is null");
+        if (teleporter == null) Debug.LogError("Teleporter is null");
+        if (mapManager == null) Debug.LogError("MapManager is null");
+ 
+        Debug.Log($"Cube {gameObject.name} opening question {roomButtonManager.GetCurrentRoomIndex() + 1}: {question.GetContext()}");
+
 
         // Pause interaction
         PauseInteraction();
+        teleporter.DisableTeleport();
 
         Action completionAction = () =>
         {
             Destroy(spawnedPrefab);
             ResumeInteraction();
+            teleporter.EnableTeleport();
             UpdateVisualState(); // Update appearance after completion
         };
+
         
         spawnedPrefab.GetComponent<TaskScreen>().Execute(question, completionAction, assignedQuestionIndex);
     }

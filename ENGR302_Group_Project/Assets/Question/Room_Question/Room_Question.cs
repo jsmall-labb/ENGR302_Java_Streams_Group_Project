@@ -13,6 +13,7 @@ public class Room_Question
 
     private Dictionary<int, List<String>> _questionAnswers;
     private String _name;
+    private int _questionID = 0;
     
     private static List<String> _roomNames = new List<String>
     {
@@ -42,7 +43,8 @@ public class Room_Question
         for (int i = 0; i < _numTasks; i++)
         {
             Question q = _questionPool.GetRandomQuestion();
-            _questions.Add(q.GetId(), q);
+            _questions.Add(_questionID, q);
+            _questionID++;
         }
         GetAllAnswers();
        
@@ -79,6 +81,7 @@ public class Room_Question
     {
         return _questions[id];
     }
+    
     
     /// <summary>
     /// Returns the name of the room.
